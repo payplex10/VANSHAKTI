@@ -112,7 +112,7 @@ function Navbar() {
             {[
               { name: "Home", path: "/" },
               { name: "About Us", path: "/about" },
-              { name: "Products", path: "/products" },
+              { name: "Productsss", path: "/products" },
               { name: "Food Safety", path: "/food-safety" },
               { name: "Sustainability", path: "/sustainability" },
             ].map((item) => (
