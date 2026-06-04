@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Logo from "../assets/logo.png";
+import LogoLight from "../assets/Vanshaktilogo_video.svg";
+import LogoDark from "../assets/logo.png";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 function Navbar() {
@@ -74,15 +75,15 @@ function Navbar() {
       <div className="container-fluid px-4">
         {/* LOGO */}
         <Link className="navbar-brand d-flex align-items-center m-0" to="/">
-          <img
-            src={Logo}
-            alt="Logo"
-            style={{
-              width: "148px",
-              height: "45px",
-              objectFit: "contain",
-            }}
-          />
+         <img
+  src={isTransparent ? LogoLight : LogoDark}
+  alt="Logo"
+  style={{
+    width: "148px",
+    height: "45px",
+    objectFit: "contain",
+  }}
+/>
         </Link>
 
         {/* MOBILE TOGGLE */}

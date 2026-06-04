@@ -133,8 +133,8 @@ function FoodSafety() {
     backgroundPosition: "center",
     minHeight: " 700px",
 padding: "20px",
-width: "100%",
-maxWidth: "100",
+// width: "100%",
+maxWidth: "100%",
     marginInline: "auto",
     position: "relative",
   }}

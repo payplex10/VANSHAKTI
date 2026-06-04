@@ -188,7 +188,7 @@ const About = () => {
         @media (max-width: 480px) { .vs-img-tall { aspect-ratio: 4/3; } .vs-img-short { aspect-ratio: 16/9; } }
 
         .vs-beliefs { max-width: 1200px; margin: clamp(32px, 5vw, 64px) auto; padding: 0 clamp(20px, 5vw, 40px); }
-        .vs-beliefs__h2 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 400; margin-bottom: clamp(20px, 3vw, 24px); font-family: 'DM Sans', sans-serif; }
+        .vs-beliefs__h2 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 400; margin-bottom: clamp(20px, 3vw, 36px); font-family: 'DM Sans', sans-serif; }
         .vs-beliefs__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(14px, 2.5vw, 24px); }
         .vs-belief-card {
           border: 1px solid #e0e7e3; border-radius: 14px; min-height: 280px;
@@ -229,7 +229,7 @@ const About = () => {
 
         .vs-agri {
           width: 100%;
-          padding: clamp(60px, 8vw,50px) 0;
+          padding: clamp(60px, 8vw, 120px) 0;
           overflow: hidden;
         }
         .vs-agri__inner {
@@ -241,7 +241,7 @@ const About = () => {
         @media (max-width: 992px) { .vs-agri__inner { grid-template-columns: 1fr; } .vs-agri__img { max-width: 100%; height: auto; margin-bottom: 30px; } }
         @media (max-width: 576px) { .vs-agri__inner { padding: 0 16px; gap: 24px; } }
 
-        .vs-team { background: #F6F6F1; padding: 30px 20px; text-align: center; }
+        .vs-team { background: #F6F6F1; padding: 60px 20px; text-align: center; }
         .vs-team__h2 { font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 500; margin-bottom: 16px; font-family: 'DM Sans', sans-serif; }
         .vs-team__p { font-size: clamp(0.9rem, 1.6vw, 1.1rem); line-height: 1.6; max-width: 500px; margin: 0 auto clamp(24px, 4vw, 48px); color: #444; }
         .vs-team__imgs { display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(10px, 2vw, 16px); }
@@ -396,7 +396,7 @@ const About = () => {
                         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                         style={{
                           background: "#fff", border: "1px solid #E5E7EB",
-                          borderRadius: "22px", padding: "16px", height: "100%",
+                          borderRadius: "22px", padding: "34px", height: "100%",
                           boxShadow: "0 12px 30px rgba(0,0,0,0.08)",
                         }}
                       >

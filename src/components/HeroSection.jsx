@@ -42,23 +42,24 @@ function HeroSection() {
 
       
       <div
-  style={{
-    position: "absolute",
-    inset: 0,
-    zIndex: 2,
-    background: `
-      radial-gradient(
-        88.09% 105.13% at 81.01% 66.67%,
-        rgba(0, 0, 0, 0) 5.37%,
-        rgba(0, 0, 0, 0.84) 100%
-      ),
-      linear-gradient(
-        180deg,
-        rgba(0, 0, 0, 0.07) 0%,
-        rgba(0,0,0,0.55) 100%
-      )
-    `,
-  }}
+ style={{
+  position: "absolute",
+  inset: 0,
+  zIndex: 2,
+  background: `
+    radial-gradient(
+      120% 140% at 100% 60%,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.73) 70%,
+      rgba(0, 0, 0, 0.84) 100%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.0) 40%,
+      rgba(0, 0, 0, 0.52) 100%
+    )
+  `,
+}}
 />
       
       <div
