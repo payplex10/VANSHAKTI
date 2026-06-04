@@ -766,7 +766,7 @@ const [currentIndex, setCurrentIndex] = useState(0);
       >
         <div
           style={{
-            padding: "20px",
+            padding: "30px",
             background: "#f5f5f5",
             borderRadius: "10px",
             boxShadow: "0 5px 15px rgba(0,0,0,0.1)",
@@ -793,6 +793,7 @@ const [currentIndex, setCurrentIndex] = useState(0);
       transform: "translateY(-50%)",
       display: "flex",
       flexDirection: "column",
+      padding: "5px",
       gap: "10px",
     }}
   >
