@@ -129,7 +129,7 @@ function QualitySection() {
       {/* CSS (unchanged) */}
       <style>{`
        .cta-section {
-  background: #f5f5f2;
+  background: #ffffff;
   padding: 100px 0 110px;
   font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
   overflow: hidden;
