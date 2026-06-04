@@ -445,7 +445,8 @@ const [currentIndex, setCurrentIndex] = useState(0);
         /* ── Agriculture section ── */
         .vs-agri {
           background: #F5F5F2;
-          padding: clamp(32px, 5vw, 60px) clamp(20px, 5vw, 40px);
+          padding: clamp(32px, 5vw, 30px) clamp(20px, 5vw, 10px);
+        
         }
         .vs-agri {
   width: 100%;
@@ -724,9 +725,7 @@ const [currentIndex, setCurrentIndex] = useState(0);
 
     {/* RIGHT CONTENT */}
     <div>
-
-      {/* HEADING - SECOND */}
-      <motion.h2
+    <motion.h2
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.3 }}
@@ -736,48 +735,84 @@ const [currentIndex, setCurrentIndex] = useState(0);
         An Integrated Approach to<br />Agriculture
       </motion.h2>
 
-      {/* ITEMS - THIRD (STAGGER LIKE TOGGLE FLOW) */}
-        <div
-  className="vertical-scroller"
+   <div
   onWheel={handleWheel}
   style={{
     height: "300px",
-    overflow: "hidden", // ❌ no scrollbar visible
     position: "relative",
+    overflow: "hidden",
+    display: "flex",
+    // alignItems: "center",
   }}
 >
-  <AnimatePresence mode="wait">
-    <motion.div
-      key={currentIndex}
-      initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -40 }}
-      transition={{ duration: 0.5, ease: "easeInOut" }}
-      style={{
-        position: "absolute",
-        width: "100%",
-      }}
-    >
-      <div
+  {/* LEFT CONTENT (SLIDER) */}
+  <div
+    style={{
+      width: "100%",
+      position: "relative",
+    }}
+  >
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={currentIndex}
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -40 }}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
         style={{
-          padding: "20px",
-          background: "#f5f5f5",
-          borderRadius: "10px",
-          boxShadow: "0 5px 15px rgba(0,0,0,0.1)",
+          position: "absolute",
+          width: "100%",
         }}
       >
-        <h3 style={{ color: "#065532" }}>
-          {approaches[currentIndex].title}
-        </h3>
+        <div
+          style={{
+            padding: "20px",
+            background: "#f5f5f5",
+            borderRadius: "10px",
+            boxShadow: "0 5px 15px rgba(0,0,0,0.1)",
+          }}
+        >
+          <h3 style={{ color: "#065532" }}>
+            {approaches[currentIndex].title}
+          </h3>
 
-        <p style={{ color: "#000000" }}>
-          {approaches[currentIndex].text}
-        </p>
-      </div>
-    </motion.div>
-  </AnimatePresence>
+          <p style={{ color: "#000000" }}>
+            {approaches[currentIndex].text}
+          </p>
+        </div>
+      </motion.div>
+    </AnimatePresence>
+  </div>
+
+  {/* RIGHT SIDE VERTICAL DOTS */}
+  <div
+    style={{
+      position: "absolute",
+      right: "10px",
+      top: "30%",
+      transform: "translateY(-50%)",
+      display: "flex",
+      flexDirection: "column",
+      gap: "10px",
+    }}
+  >
+    {approaches.map((_, index) => (
+      <div
+        key={index}
+        onClick={() => setCurrentIndex(index)}
+        style={{
+          width: currentIndex === index ? "10px" : "8px",
+          height: currentIndex === index ? "10px" : "8px",
+          borderRadius: "50%",
+          backgroundColor: currentIndex === index ? "#065532" : "#cfcfcf",
+          cursor: "pointer",
+          transition: "0.9s",
+        }}
+      />
+    ))}
+  </div>
 </div>
-    </div>
+ </div>
   </div>
 </section>
         {/* ── TEAM ─────────────────────────────────────────────── */}
