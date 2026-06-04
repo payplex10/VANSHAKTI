@@ -64,8 +64,8 @@ export default function CorePart() {
 
         /* ── Outer page wrapper ─────────────────────────── */
         .hws-page {
-          background: #eceae6;
-          padding: 56px 20px;
+          background: #ffffff;
+          padding: 5px 20px;
           font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
           min-height: 100vh;
           display: flex;
@@ -81,7 +81,7 @@ export default function CorePart() {
           border-radius: 22px;
           padding: 52px 48px 56px;
           width: 100%;
-          max-width: 1320px;
+          max-width: 1200px;
         }
 
         /* bg image — centered watermark style */

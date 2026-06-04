@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { motion, useInView, useAnimation } from "framer-motion";
+import { motion, AnimatePresence, useInView, useAnimation } from "framer-motion";
 
 // Import images
 import HeroImg from "../assets/abouthero.jpg";
@@ -67,6 +67,9 @@ const StaggerList = ({ items, renderItem }) => {
 /* ─── Component ─────────────────────────────────────────────── */
 const About = () => {
   const navigate = useNavigate();
+const [currentIndex, setCurrentIndex] = useState(0);
+  const intervalRef = useRef(null);
+  
 
   const farmImages = [Farm1, Farm2, Farm3, Farm4];
   const teamImages = [Team1, Team2, Team3, Team4];
@@ -107,6 +110,36 @@ const About = () => {
       text: "We continuously analyze network data to optimize routes, predict demand, and mitigate risks. This intelligent layer allows us to adapt to changing conditions in real-time.",
     },
   ];
+
+  
+    useEffect(() => {
+    intervalRef.current = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % approaches.length);
+    }, 3000);
+
+    return () => clearInterval(intervalRef.current);
+  }, []);
+
+  // Handle manual scroll via wheel
+ const handleWheel = (e) => {
+  e.preventDefault();
+
+  if (isScrolling) return;
+
+  setIsScrolling(true);
+
+  setCurrentIndex((prev) => {
+    if (e.deltaY > 0) {
+      return Math.min(prev + 1, approaches.length - 1);
+    } else {
+      return Math.max(prev - 1, 0);
+    }
+  });
+
+  setTimeout(() => {
+    setIsScrolling(false);
+  }, 600); // matches animation duration
+};
 
   useEffect(() => {
     document.title = "About VanShakti | Sustainable Agriculture & Farmer Empowerment";
@@ -277,6 +310,50 @@ const About = () => {
         }
 
         /* ── Connections banner ── */
+.vs-connections {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ✅ Image responsiveness */
+.vs-connections img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Dark overlay for readability */
+.vs-connections__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+/* Text container */
+.vs-connections__text {
+  position: absolute;
+  z-index: 2;
+  text-align: center;
+  padding: 0 20px;
+  max-width: 900px;
+}
+
+/* ✅ Responsive text (VERY IMPORTANT) */
+.vs-connections__text h2 {
+  color: #fff;
+  font-weight: 400;
+  font-size: clamp(22px, 4vw, 56px);
+  line-height: 1.2;
+  margin: 0;
+}
+
+
        .vs-connections {
   position: relative;
   width: 100%;
@@ -339,21 +416,21 @@ const About = () => {
 /* ================= MOBILE (PORTRAIT RATIO FEEL) ================= */
 @media (max-width: 768px) {
   .vs-connections {
-    height: clamp(240px, 60vw, 360px);
+    height: 300px;
+    justify-content: flex-end; /* pushes content slightly right */
+  }
+
+  .vs-connections img {
+    object-position: right center; /* ✅ shows right side of image */
   }
 
   .vs-connections__text {
-    left: 16px;
-    right: 16px;
-    top: auto;
-    bottom: clamp(24px, 6vw, 40px);
-    transform: none;
-
-    max-width: 100%;
+    text-align: center;
+    padding: 0 16px;
   }
 
   .vs-connections__text h2 {
-    font-size: 1.4rem;
+    font-size: clamp(20px, 6vw, 32px);
   }
 }
 
@@ -372,7 +449,7 @@ const About = () => {
         }
         .vs-agri {
   width: 100%;
-  padding: clamp(60px, 8vw, 120px) 0;
+  // padding: clamp(60px, 8vw, 120px) 0;
   overflow: hidden;
 }
 
@@ -617,13 +694,15 @@ const About = () => {
         </section>
 
         {/* ── CONNECTIONS BANNER ───────────────────────────────── */}
-        <section className="vs-connections" aria-label="Building connections">
-          <img src={ConnectionsBg} alt="Agricultural connections" />
-          <div className="vs-connections__overlay" aria-hidden="true" />
-          <div className="vs-connections__text">
-            <h2 style={{ fontSize: "56px", fontWeight: 400 }}>Building stronger connections across agriculture.</h2>
-          </div>
-        </section>
+      <section className="vs-connections" aria-label="Building connections">
+  <img src={ConnectionsBg} alt="Agricultural connections" />
+
+  <div className="vs-connections__overlay" aria-hidden="true" />
+
+  <div className="vs-connections__text">
+    <h2>Building stronger connections across agriculture.</h2>
+  </div>
+</section>
 
         {/* ── INTEGRATED APPROACH (Agriculture) ───────────────── */}
         <section className="vs-agri" aria-label="Integrated Approach to Agriculture">
@@ -658,26 +737,46 @@ const About = () => {
       </motion.h2>
 
       {/* ITEMS - THIRD (STAGGER LIKE TOGGLE FLOW) */}
-      <div>
-        {approaches.map((item, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 30, height: 0 }}
-            whileInView={{ opacity: 1, y: 0, height: "auto" }}
-            transition={{
-              duration: 0.5,
-              delay: 0.5 + index * 0.2, 
-              ease: "easeOut",
-            }}
-            viewport={{ once: true, amount: 0.2 }}
-            className="vs-agri-item"
-          >
-            <h3>{item.title}</h3>
-            <p>{item.text}</p>
-          </motion.div>
-        ))}
-      </div>
+        <div
+  className="vertical-scroller"
+  onWheel={handleWheel}
+  style={{
+    height: "300px",
+    overflow: "hidden", // ❌ no scrollbar visible
+    position: "relative",
+  }}
+>
+  <AnimatePresence mode="wait">
+    <motion.div
+      key={currentIndex}
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -40 }}
+      transition={{ duration: 0.5, ease: "easeInOut" }}
+      style={{
+        position: "absolute",
+        width: "100%",
+      }}
+    >
+      <div
+        style={{
+          padding: "20px",
+          background: "#f5f5f5",
+          borderRadius: "10px",
+          boxShadow: "0 5px 15px rgba(0,0,0,0.1)",
+        }}
+      >
+        <h3 style={{ color: "#065532" }}>
+          {approaches[currentIndex].title}
+        </h3>
 
+        <p style={{ color: "#000000" }}>
+          {approaches[currentIndex].text}
+        </p>
+      </div>
+    </motion.div>
+  </AnimatePresence>
+</div>
     </div>
   </div>
 </section>

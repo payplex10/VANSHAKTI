@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useNavigate } from "react-router-dom"; 
-import ProductsBg from "../assets/product.jpg"; 
-import HeroImage from "../assets/productimage.png";
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@100..1000&display=swap" rel="stylesheet"></link>
+import { useNavigate } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-// Cultivation Categories
+import ProductsBg from "../assets/product.jpg";
+import HeroImage from "../assets/productimage.png";
+
 import FreshFruits from "../assets/fresh-fruits.png";
 import FreshVegetables from "../assets/fresh-vegetables.png";
 import HerbalMedicinal from "../assets/herbal-medicinal.png";
@@ -12,25 +12,21 @@ import MushroomsFarming from "../assets/mushrooms-farming.png";
 import NurseryPlants from "../assets/nursery-plants.png";
 import ProcessedProducts from "../assets/processed-products.png";
 
-// Featured Items
 import KesarMango from "../assets/kesar-mango.png";
 import Tomato from "../assets/Tomatoes.png";
 import RamaTulsi from "../assets/Tulsi.png";
 import Mushroom from "../assets/Oyster-Mushrooms.png";
 
-// Quality Section
-import QualityImg from "../assets/quality-stage.png"; 
-import productIcon from "../assets/productIcon.svg"; 
+import QualityImg from "../assets/quality-stage.png";
+import productIcon from "../assets/productIcon.svg";
 
-// Step Icons
 import CultivationIcon from "../assets/Icon (5).svg";
 import HarvestingIcon from "../assets/Icon (4).svg";
 import ProcessingIcon from "../assets/Icon (3).svg";
 import PackagingIcon from "../assets/Icon (2).svg";
 import DistributionIcon from "../assets/Icon (1).svg";
 
-
-
+// ─── Data ─────────────────────────────────────────────────────────────────────
 const categories = [
   { title: "Fresh Fruits", img: FreshFruits },
   { title: "Fresh Vegetables", img: FreshVegetables },
@@ -55,46 +51,18 @@ const steps = [
   { title: "Distribution", icon: DistributionIcon },
 ];
 
-// Reusable Intersection Observer hook for handling on-scroll entry animations
+// ─── Scroll Reveal Hook ───────────────────────────────────────────────────────
 function useScrollReveal(threshold = 0.05) {
   const [isIntersecting, setIsIntersecting] = useState(false);
   const elementRef = useRef(null);
 
   useEffect(() => {
-  // SEO
-  document.title =
-    "Agricultural Products | Fresh Fruits, Vegetables & Farming Solutions | VanShakti";
-
-  document
-    .querySelector('meta[name="description"]')
-    ?.setAttribute(
-      "content",
-      "Explore VanShakti's premium agricultural products including fresh fruits, vegetables, medicinal plants, mushrooms, nursery plants, and processed agricultural products cultivated with quality and sustainability."
-    );
-
-  document
-    .querySelector('meta[name="keywords"]')
-    ?.setAttribute(
-      "content",
-      "agricultural products, fresh fruits, fresh vegetables, medicinal plants, mushroom farming, nursery plants, organic produce, farming products, agriculture solutions, farm products India, sustainable agriculture, VanShakti products"
-    );
-
-  // Open Graph SEO
-  document
-    .querySelector('meta[property="og:title"]')
-    ?.setAttribute(
-      "content",
-      "Agricultural Products | VanShakti"
-    );
-
-  document
-    .querySelector('meta[property="og:description"]')
-    ?.setAttribute(
-      "content",
-      "Discover premium agricultural products, fresh produce, medicinal plants, mushroom farming, and sustainable cultivation solutions from VanShakti."
-    );
-
-}, []);
+    document.title = "Agricultural Products | Fresh Fruits, Vegetables & Farming Solutions | VanShakti";
+    document.querySelector('meta[name="description"]')?.setAttribute("content", "Explore VanShakti's premium agricultural products including fresh fruits, vegetables, medicinal plants, mushrooms, nursery plants, and processed agricultural products cultivated with quality and sustainability.");
+    document.querySelector('meta[name="keywords"]')?.setAttribute("content", "agricultural products, fresh fruits, fresh vegetables, medicinal plants, mushroom farming, nursery plants, organic produce, farming products, agriculture solutions, farm products India, sustainable agriculture, VanShakti products");
+    document.querySelector('meta[property="og:title"]')?.setAttribute("content", "Agricultural Products | VanShakti");
+    document.querySelector('meta[property="og:description"]')?.setAttribute("content", "Discover premium agricultural products, fresh produce, medicinal plants, mushroom farming, and sustainable cultivation solutions from VanShakti.");
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -106,22 +74,18 @@ function useScrollReveal(threshold = 0.05) {
       },
       { threshold, rootMargin: "0px 0px -50px 0px" }
     );
-
     const currentRef = elementRef.current;
     if (currentRef) observer.observe(currentRef);
-
-    return () => {
-      if (currentRef) observer.unobserve(currentRef);
-    };
+    return () => { if (currentRef) observer.unobserve(currentRef); };
   }, [threshold]);
 
   return [elementRef, isIntersecting];
 }
 
+// ─── Component ────────────────────────────────────────────────────────────────
 export default function Products() {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
-  // Individual segment visibility tracking references
   const [heroRef, heroVisible] = useScrollReveal(0.02);
   const [catRef, catVisible] = useScrollReveal(0.05);
   const [featRef, featVisible] = useScrollReveal(0.05);
@@ -129,328 +93,188 @@ export default function Products() {
   const [ctaRef, ctaVisible] = useScrollReveal(0.05);
 
   return (
-    <div style={{ fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif", backgroundColor: "#fff", overflowX: "hidden" }}>
-      
-      {/* ── HERO SECTION ── */}
+    <div className="prod-root">
+
+      {/* ── 1. HERO ───────────────────────────────────────────────────────── */}
       <section
         ref={heroRef}
-        className={`prod-reveal-parent ${heroVisible ? "prod-active" : ""}`}
-        style={{
-          position: "relative",
-          backgroundImage: `url(${ProductsBg})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          padding: "140px 20px 120px",
-          color: "#1c1c1c",
-          borderRadius: "0px 0px 24px 24px",
-          minHeight: "650px",
-          overflow: "hidden",
-          display: "flex",
-          alignItems: "center",
-        }}
+        className={`prod-hero prod-reveal-parent ${heroVisible ? "prod-active" : ""}`}
+        style={{ backgroundImage: `url(${ProductsBg})` }}
       >
-        <div style={{ position: "absolute", inset: 0,  zIndex: 1 }} />
-        <div style={{ position: "relative", zIndex: 2, maxWidth: "850px", margin: "0 ", width: "100%", padding: "0 10px" }}>
-          <div className="prod-reveal-item delay-1">
-            <span style={{
-  display: "inline-block",
-  // backgroundColor: "rgba(255, 255, 255, 0.27)",
-  color: "#090a0a",
-  padding: "6px 10px",
-  borderRadius: "20px",
-  fontSize: "0.85rem",
-  fontWeight: 600,
-  border:"1px solid #3B3939",
-  letterSpacing: "0.5px",
-  boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
-  fontFamily: "'DM Sans",
-}}>
-              Our Products
-            </span>
-          </div>
-          
-          <div className="prod-reveal-item delay-2">
-            <h1 style={{ fontSize: "3.5rem", fontWeight: 400, marginTop: "24px", marginBottom: "20px", lineHeight: "1.15", color: "#111", letterSpacing: "-0.5px" }}>
-              Fresh Produce and <br />Specialized Agriculture
-            </h1>
-          </div>
-
-          <div className="prod-reveal-item delay-3">
-            <p style={{ fontSize: "1.25rem", lineHeight: "1.65", color: "#222", maxWidth: "500px", margin: 0 }}>
-              VanShakti supports a diverse agricultural ecosystem including fruits, vegetables, medicinal plants, mushroom farming, nursery development, and value-added agricultural products.
-            </p>
-          </div>
+        <div className="prod-hero__content">
+          <span className="prod-hero__badge prod-reveal-item delay-1">Our Products</span>
+          <h1 className="prod-hero__title prod-reveal-item delay-2">
+            Fresh Produce and<br />Specialized Agriculture
+          </h1>
+          <p className="prod-hero__sub prod-reveal-item delay-3">
+            VanShakti supports a diverse agricultural ecosystem including fruits, vegetables,
+            medicinal plants, mushroom farming, nursery development, and value-added agricultural products.
+          </p>
         </div>
       </section>
 
-      {/* ── CULTIVATION CATEGORIES SECTION ── */}
-      <section 
+      {/* ── 2. CULTIVATION CATEGORIES ─────────────────────────────────────── */}
+      <section
         ref={catRef}
-        className={`container my-5 py-4 prod-reveal-parent ${catVisible ? "prod-active" : ""}`}
+        className={`prod-cat prod-reveal-parent ${catVisible ? "prod-active" : ""}`}
       >
-        <div style={{ padding: "25px 0", marginBottom: "40px" }}>
-          <div className="row align-items-center">
-            <div className="col-md-5 mb-3 mb-md-0 prod-reveal-item delay-1">
-              <h3 style={{ color: "#065532", fontWeight: 500, fontSize: "2.2rem", margin: 0, letterSpacing: "-0.5px" }}>
-                Cultivation Categories
-              </h3>
-            </div>
-            <div className="col-md-7 prod-reveal-item delay-2">
-              <p style={{ color: "#555", fontSize: "1.05rem", lineHeight: "1.6", margin: 0, borderLeft: "3px solid #6fcf4a", paddingLeft: "20px" }}>
-                Intelligent cultivation across six specialized verticals, maintaining optimized, strict parameters to maximize pure quality output and consistency.
-              </p>
-            </div>
+        <div className="prod-cat__header">
+          <div className="prod-cat__header-left prod-reveal-item delay-1">
+            <h2 className="prod-cat__heading">Cultivation Categories</h2>
+          </div>
+          <div className="prod-cat__header-right prod-reveal-item delay-2">
+            <p className="prod-cat__sub">
+              Intelligent cultivation across six specialized verticals, maintaining optimized,
+              strict parameters to maximize pure quality output and consistency.
+            </p>
           </div>
         </div>
-
-        <div className="row g-4">
+        <div className="prod-cat__grid">
           {categories.map((item, idx) => (
-            <div key={idx} className="col-lg-4 col-md-6 prod-reveal-item delay-3">
-              <div 
-                className="prod-zoom-card"
-                style={{ 
-                  position: "relative", 
-                  borderRadius: "16px", 
-                  overflow: "hidden", 
-                  width: "100%", 
-                  height: "440px",
-                  boxShadow: "0 4px 15px rgba(0,0,0,0.04)"
-                }}
-              >
+            <div
+              key={idx}
+              className="prod-cat-card prod-reveal-item prod-zoom-card"
+              style={{ transitionDelay: `${idx * 100 + 150}ms` }}
+            >
+              <img
+                src={item.img}
+                alt={item.title}
+                className="prod-cat-card__img zoom-target"
+              />
+              <div className="prod-cat-card__gradient" />
+              <div className="prod-cat-card__label">{item.title}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── 3. FEATURED SELECTIONS ────────────────────────────────────────── */}
+      <section
+        ref={featRef}
+        className={`prod-feat prod-reveal-parent ${featVisible ? "prod-active" : ""}`}
+      >
+        <div className="prod-feat__header">
+          <div className="prod-reveal-item delay-1">
+            <h2 className="prod-feat__heading">Featured Selections</h2>
+            <p className="prod-feat__sub">The absolute pinnacle of our production and seasonal output</p>
+          </div>
+          <div className="prod-feat__nav prod-reveal-item delay-2">
+            <button className="prod-feat__nav-btn">&#8592;</button>
+            <button className="prod-feat__nav-btn">&#8594;</button>
+          </div>
+        </div>
+        <div className="prod-feat__grid">
+          {featuredItems.map((item, idx) => (
+            <div
+              key={idx}
+              className="prod-feat-card prod-reveal-item prod-hover-card"
+              style={{ transitionDelay: `${idx * 100 + 150}ms` }}
+            >
+              <div className="prod-feat-card__img-wrap">
                 <img
                   src={item.img}
                   alt={item.title}
-                  className="zoom-target"
-                  style={{ 
-                    width: "100%", 
-                    height: "100%", 
-                    objectFit: "cover", 
-                    transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)" 
-                  }}
+                  className="prod-feat-card__img card-zoom-img"
                 />
-                <div style={{
-                  position: "absolute",
-                  inset: 0,
-                  background: "linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(0,0,0,0.7) 100%)",
-                  zIndex: 1
-                }} />
-                <div style={{
-                  position: "absolute",
-                  bottom: 0,
-                  width: "100%",
-                  padding: "24px",
-                  color: "white",
-                  fontWeight: 600,
-                  fontSize: "1.3rem",
-                  letterSpacing: "-0.3px",
-                  zIndex: 2
-                }}>
-                  {item.title}
-                </div>
+              </div>
+              <div className="prod-feat-card__body">
+                <h5 className="prod-feat-card__title">{item.title}</h5>
+                <p className="prod-feat-card__cat">{item.category}</p>
+                <p className="prod-feat-card__desc">{item.description}</p>
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* ── FEATURED SELECTIONS SECTION ── */}
-      <section 
-        ref={featRef}
-        className={`container my-5 py-5 prod-reveal-parent ${featVisible ? "prod-active" : ""}`}
-      >
-        <div className="d-flex justify-content-between align-items-center mb-5 flex-wrap gap-3">
-          <div className="prod-reveal-item delay-1">
-            <h3 style={{ color: "#1a3b2f", fontWeight: 500, fontSize: "2.2rem", margin: "0 0 8px 0" }}>
-              Featured Selections
-            </h3>
-            <p style={{ color: "#666", fontSize: "1rem", margin: 0 }}>
-              The absolute pinnacle of our production and seasonal output
-            </p>
-          </div>
-          <div className="d-flex gap-2 prod-reveal-item delay-2">
-            <button className="btn btn-light rounded-circle shadow-sm" style={{ width: "45px", height: "45px", display: "flex", alignItems: "center", justifyContent: "center" }}>&#8592;</button>
-            <button className="btn btn-light rounded-circle shadow-sm" style={{ width: "45px", height: "45px", display: "flex", alignItems: "center", justifyContent: "center" }}>&#8594;</button>
-          </div>
-        </div>
-
-        <div className="row g-4">
-          {featuredItems.map((item, idx) => (
-            <div key={idx} className="col-lg-3 col-md-6 prod-reveal-item" style={{ transitionDelay: `${idx * 100 + 150}ms` }}>
-              <div
-                className="shadow-sm rounded prod-hover-card"
-                style={{
-                  backgroundColor: "#fff",
-                  border: "1px solid #eaeaea",
-                  overflow: "hidden",
-                  padding: "24px",
-                  minHeight: "480px",
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  borderRadius: "16px",
-                  transition: "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1)"
-                }}
-              >
-                <div style={{ overflow: "hidden", borderRadius: "12px", width: "100%", height: "240px", marginBottom: "20px" }}>
-                  <img
-                    src={item.img}
-                    alt={item.title}
-                    className="card-zoom-img"
-                    style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.5s ease" }}
-                  />
-                </div>
-                <h5 style={{ fontWeight: 500, fontSize: "1.15rem", marginBottom: "6px", color: "#111", textAlign: "center" }}>
-                  {item.title}
-                </h5>
-                <p style={{ fontSize: "0.78rem", fontWeight: 500, color: "#2c7a4b", marginBottom: "12px", textAlign: "center", letterSpacing: "1px" }}>
-                  {item.category}
-                </p>
-                <p style={{ fontSize: "0.85rem", color: "#555", textAlign: "center", lineHeight: "1.5", margin: 0 }}>
-                  {item.description}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── QUALITY INFRASTRUCTURE SECTION ── */}
-      <section 
+      {/* ── 4. QUALITY INFRASTRUCTURE ─────────────────────────────────────── */}
+      <section
         ref={qualityRef}
-        className={`container my-5 py-4 prod-reveal-parent ${qualityVisible ? "prod-active" : ""}`}
+        className={`prod-quality prod-reveal-parent ${qualityVisible ? "prod-active" : ""}`}
       >
-        <div className="row align-items-center g-5">
-          <div className="col-lg-6 prod-reveal-item delay-1">
-            <h3 style={{ color: "#1a3b2f", fontWeight: 500, fontSize: "2.2rem", marginBottom: "20px", lineHeight: "1.25" }}>
-              Quality Maintained <br />Across Every Single Stage
-            </h3>
-            <p style={{ color: "#555", fontSize: "1.05rem", lineHeight: 1.65, marginBottom: "30px" }}>
-              Structured sourcing, precision batch handling, and strict operation control practices safeguard optimal freshness, premium product consistency, and distribution chain reliability.
+        <div className="prod-quality__inner">
+          {/* Text */}
+          <div className="prod-quality__text prod-reveal-item delay-1">
+            <h2 className="prod-quality__heading">
+              Quality Maintained<br />Across Every Single Stage
+            </h2>
+            <p className="prod-quality__body">
+              Structured sourcing, precision batch handling, and strict operation control practices
+              safeguard optimal freshness, premium product consistency, and distribution chain reliability.
             </p>
-            
-            <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-              <div style={{ display: "flex", alignItems: "flex-start", gap: "14px" }}>
-                <div style={{ backgroundColor: "#eaf7e6", padding: "10px", borderRadius: "12px", display: "flex", shrink: 0 }}>
-                  <img src={productIcon} alt="Icon" style={{ width: "22px", height: "22px" }} />
+            <div className="prod-quality__features">
+              {[
+                {
+                  title: "Temperature Control Logistics",
+                  desc: "Unbroken end-to-end cold-chain logistics preservation from immediate field harvest lines to target deliveries.",
+                },
+                {
+                  title: "Scientific Lab Diagnostics",
+                  desc: "Continuous analytical soil nutrient mapping profiles and crop diagnostic testing runs inside certified laboratories.",
+                },
+              ].map((feat, idx) => (
+                <div key={idx} className="prod-quality__feature">
+                  <div className="prod-quality__feat-icon">
+                    <img src={productIcon} alt="icon" />
+                  </div>
+                  <div>
+                    <h6 className="prod-quality__feat-title">{feat.title}</h6>
+                    <p className="prod-quality__feat-desc">{feat.desc}</p>
+                  </div>
                 </div>
-                <div>
-                  <h6 style={{ fontWeight: 500, color: "#111", margin: "0 0 4px 0", fontSize: "1.05rem" }}>Temperature Control Logistics</h6>
-                  <p style={{ color: "#666", margin: 0, fontSize: "0.92rem" }}>Unbroken end-to-end cold-chain logistics preservation from immediate field harvest lines to target deliveries.</p>
-                </div>
-              </div>
-
-              <div style={{ display: "flex", alignItems: "flex-start", gap: "14px" }}>
-                <div style={{ backgroundColor: "#eaf7e6", padding: "10px", borderRadius: "12px", display: "flex", shrink: 0 }}>
-                  <img src={productIcon} alt="Icon" style={{ width: "22px", height: "22px" }} />
-                </div>
-                <div>
-                  <h6 style={{ fontWeight: 500, color: "#111", margin: "0 0 4px 0", fontSize: "1.05rem" }}>Scientific Lab Diagnostics</h6>
-                  <p style={{ color: "#666", margin: 0, fontSize: "0.92rem" }}>Continuous analytical soil nutrient mapping profiles and crop diagnostic testing runs inside certified laboratories.</p>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
-
-          <div className="col-lg-6 prod-reveal-item delay-2" style={{ perspective: "1000px" }}>
+          {/* Image */}
+          <div className="prod-quality__img-wrap prod-reveal-item delay-2">
             <img
               src={QualityImg}
               alt="Quality Infrastructure"
-              className="img-fluid rounded shadow-lg image-tilt-effect"
-              style={{ borderRadius: "20px", transition: "transform 0.4s ease", width: "100%" }}
+              className="prod-quality__img image-tilt-effect"
             />
           </div>
         </div>
 
-        {/* Dynamic Connected Process Pipeline Steps */}
-        <div className="d-flex justify-content-between align-items-center mt-5 pt-4 flex-wrap position-relative prod-reveal-item delay-3">
+        {/* Pipeline Steps */}
+        <div className="prod-pipeline prod-reveal-item delay-3">
           {steps.map((step, idx) => (
             <React.Fragment key={idx}>
-              <div className="d-flex flex-column align-items-center mb-4 pipeline-step-node" style={{ minWidth: "120px", zIndex: 2 }}>
-                <div
-                  className="step-icon-container"
-                  style={{
-                    width: "70px",
-                    height: "70px",
-                    borderRadius: "50%",
-                    backgroundColor: "#eaf7e6",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    marginBottom: "12px",
-                    // transition: "transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 127)",
-                    boxShadow: "0 4px 10px rgba(44,122,75,0.06)"
-                  }}
-                >
-                  <img src={step.icon} alt={step.title} style={{ width: "32px", height: "32px" }} />
+              <div className="prod-pipeline__step pipeline-step-node">
+                <div className="prod-pipeline__icon step-icon-container">
+                  <img src={step.icon} alt={step.title} />
                 </div>
-                <span style={{ fontSize: "0.9rem", fontWeight: 500, color: "#1a3b2f", textAlign: "center" }}>
-                  {step.title}
-                </span>
+                <span className="prod-pipeline__label">{step.title}</span>
               </div>
               {idx < steps.length - 1 && (
-                <div
-                  className="pipeline-flow-line"
-                  style={{
-                    flex: 1,
-                    height: "2px",
-                    background: "linear-gradient(to right, #eaf7e6 0%, rgba(234,247,230,0.1) 100%)",
-                    margin: "0 10px",
-                    alignSelf: "center",
-                    transformOrigin: "left center",
-                    zIndex: 1,
-                    marginTop: "-24px"
-                  }}
-                />
+                <div className="prod-pipeline__line pipeline-flow-line" />
               )}
             </React.Fragment>
           ))}
         </div>
       </section>
 
-      {/* ── CTA / BOTTOM HERO PARTNERSHIP SECTION ── */}
+      {/* ── 5. CTA SECTION ────────────────────────────────────────────────── */}
       <section
         ref={ctaRef}
-        className={`prod-reveal-parent ${ctaVisible ? "prod-active" : ""}`}
-        style={{ maxWidth: "1240px", margin: "80px auto 40px", padding: "0 20px" }}
+        className={`prod-cta-wrap prod-reveal-parent ${ctaVisible ? "prod-active" : ""}`}
       >
         <div
-          style={{
-            backgroundImage: `url(${HeroImage})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            borderRadius: "14px",
-            padding: "120px 60px",
-            color: "#fff",
-            position: "relative",
-            overflow: "hidden",
-            boxShadow: "0 15px 35px rgba(0, 0, 0, 0.08)"
-          }}
+          className="prod-cta"
+          style={{ backgroundImage: `url(${HeroImage})` }}
         >
-          <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(0, 0, 0, 0.09)" }} />
-          <div style={{ position: "relative", zIndex: 2, maxWidth: "750px" }}>
-            <h2 className="prod-reveal-item delay-1" style={{ fontSize: "3rem", fontWeight: 500, lineHeight: 1.25, marginBottom: "20px", letterSpacing: "-0.5px" }}>
+          <div className="prod-cta__overlay" />
+          <div className="prod-cta__content">
+            <h2 className="prod-cta__heading prod-reveal-item delay-1">
               Looking for Highly Reliable Agricultural Products?
             </h2>
-            <p className="prod-reveal-item delay-2" style={{ fontSize: "1.2rem", marginBottom: "36px", color: "#f5f5f5", fontWeight: 400, lineHeight: "1.6" }}>
-              Connect directly with our operations team to explore commercial partnership opportunities, supply infrastructure setups, and volume export channels.
+            <p className="prod-cta__sub prod-reveal-item delay-2">
+              Connect directly with our operations team to explore commercial partnership
+              opportunities, supply infrastructure setups, and volume export channels.
             </p>
-
             <div className="prod-reveal-item delay-3">
               <button
+                className="prod-cta__btn btn-premium-cta"
                 onClick={() => navigate("/contact")}
-                className="btn-premium-cta"
-                style={{
-                  backgroundColor: "#1c5a3e",
-                  color: "#fff",
-                  border: "none",
-                  padding: "14px 36px",
-                  borderRadius: "30px",
-                  fontWeight: 600,
-                  fontSize: "1rem",
-                  cursor: "pointer",
-                  transition: "transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease",
-                  boxShadow: "0 4px 15px rgba(28,90,62,0.3)"
-                }}
               >
                 Partner With Us
               </button>
@@ -459,75 +283,556 @@ export default function Products() {
         </div>
       </section>
 
-      {/* ── GRAPHIC ENGINEERING ANIMATION ENGINE ── */}
+      {/* ── STYLES ────────────────────────────────────────────────────────── */}
       <style>{`
-        /* Staged Reveal Base Properties */
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+        /* ── Base ── */
+        .prod-root {
+          font-family: 'DM Sans', sans-serif;
+          background-color: #fff;
+          overflow-x: hidden;
+          width: 100%;
+          max-width: 100vw;
+        }
+
+        /* ── 1. HERO ── */
+        .prod-hero {
+          position: relative;
+          background-size: cover;
+          background-position: center;
+          min-height: 650px;
+          display: flex;
+          align-items: center;
+          padding: 80px clamp(24px, 6vw, 120px);
+          border-radius: 0 0 24px 24px;
+          overflow: hidden;
+        }
+        .prod-hero__content {
+          position: relative;
+          z-index: 2;
+          max-width: 780px;
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+        }
+        .prod-hero__badge {
+          display: inline-block;
+          color: #090a0a;
+          padding: 6px 14px;
+          border-radius: 20px;
+          font-size: 0.85rem;
+          font-weight: 600;
+          border: 1px solid #3B3939;
+          letter-spacing: 0.5px;
+          width: fit-content;
+        }
+        .prod-hero__title {
+          font-size: clamp(1.9rem, 5vw, 3.5rem);
+          font-weight: 400;
+          color: #111;
+          line-height: 1.15;
+          letter-spacing: -0.5px;
+          margin: 0;
+        }
+        .prod-hero__sub {
+          font-size: clamp(0.95rem, 2vw, 1.2rem);
+          color: #222;
+          line-height: 1.65;
+          margin: 0;
+          max-width: 520px;
+        }
+
+        /* ── 2. CULTIVATION CATEGORIES ── */
+        .prod-cat {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: clamp(40px, 6vw, 80px) clamp(24px, 5vw, 60px);
+        }
+        .prod-cat__header {
+          display: flex;
+          align-items: flex-start;
+          gap: clamp(24px, 4vw, 60px);
+          margin-bottom: clamp(28px, 4vw, 48px);
+          flex-wrap: wrap;
+        }
+        .prod-cat__header-left {
+          flex: 0 0 auto;
+          min-width: 220px;
+        }
+        .prod-cat__heading {
+          font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+          font-weight: 500;
+          color: #065532;
+          margin: 0;
+          letter-spacing: -0.5px;
+          line-height: 1.2;
+        }
+        .prod-cat__header-right {
+          flex: 1;
+          min-width: 220px;
+        }
+        .prod-cat__sub {
+          font-size: clamp(0.875rem, 1.5vw, 1.05rem);
+          color: #555;
+          line-height: 1.65;
+          margin: 0;
+          border-left: 3px solid #6fcf4a;
+          padding-left: 20px;
+        }
+        .prod-cat__grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: clamp(14px, 2vw, 24px);
+        }
+        .prod-cat-card {
+          position: relative;
+          border-radius: 14px;
+          overflow: hidden;
+          /* 3/4 portrait aspect — looks great for category cards */
+          aspect-ratio: 3 / 4;
+          box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+          cursor: pointer;
+        }
+        .prod-cat-card__img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .prod-cat-card__gradient {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,0.72) 100%);
+          z-index: 1;
+        }
+        .prod-cat-card__label {
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          padding: clamp(14px, 2.5vw, 24px);
+          color: #fff;
+          font-weight: 600;
+          font-size: clamp(1rem, 1.8vw, 1.3rem);
+          letter-spacing: -0.3px;
+          z-index: 2;
+        }
+
+        /* ── 3. FEATURED SELECTIONS ── */
+        .prod-feat {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: clamp(40px, 6vw, 80px) clamp(24px, 5vw, 60px);
+        }
+        .prod-feat__header {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-end;
+          margin-bottom: clamp(24px, 4vw, 48px);
+          flex-wrap: wrap;
+          gap: 16px;
+        }
+        .prod-feat__heading {
+          font-size: clamp(1.4rem, 2.6vw, 2.2rem);
+          font-weight: 500;
+          color: #1a3b2f;
+          margin: 0 0 8px;
+          line-height: 1.2;
+        }
+        .prod-feat__sub {
+          color: #666;
+          font-size: clamp(0.875rem, 1.4vw, 1rem);
+          margin: 0;
+        }
+        .prod-feat__nav {
+          display: flex;
+          gap: 8px;
+        }
+        .prod-feat__nav-btn {
+          width: 44px;
+          height: 44px;
+          border-radius: 50%;
+          border: 1px solid #e0e0e0;
+          background: #fff;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1.1rem;
+          transition: background 0.2s, box-shadow 0.2s;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .prod-feat__nav-btn:hover {
+          background: #f5f5f5;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .prod-feat__grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: clamp(14px, 2vw, 24px);
+        }
+        .prod-feat-card {
+          background: #fff;
+          border: 1px solid #eaeaea;
+          border-radius: 14px;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .prod-feat-card__img-wrap {
+          overflow: hidden;
+          /* consistent square-ish ratio for product shots */
+          aspect-ratio: 1 / 1;
+          width: 100%;
+        }
+        .prod-feat-card__img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.5s ease;
+          display: block;
+        }
+        .prod-feat-card__body {
+          padding: clamp(14px, 2.5vw, 22px);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          flex: 1;
+          gap: 6px;
+        }
+        .prod-feat-card__title {
+          font-weight: 500;
+          font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+          color: #111;
+          text-align: center;
+          margin: 0;
+          line-height: 1.25;
+        }
+        .prod-feat-card__cat {
+          font-size: 0.72rem;
+          font-weight: 600;
+          color: #2c7a4b;
+          letter-spacing: 1px;
+          margin: 0;
+          text-align: center;
+        }
+        .prod-feat-card__desc {
+          font-size: clamp(0.78rem, 1.2vw, 0.85rem);
+          color: #555;
+          text-align: center;
+          line-height: 1.55;
+          margin: 0;
+        }
+
+        /* ── 4. QUALITY INFRASTRUCTURE ── */
+        .prod-quality {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: clamp(40px, 6vw, 80px) clamp(24px, 5vw, 60px);
+        }
+        .prod-quality__inner {
+          display: flex;
+          align-items: center;
+          gap: clamp(32px, 5vw, 72px);
+          flex-wrap: wrap;
+          margin-bottom: clamp(40px, 5vw, 64px);
+        }
+        .prod-quality__text {
+          flex: 1;
+          min-width: 280px;
+        }
+        .prod-quality__heading {
+          font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+          font-weight: 500;
+          color: #1a3b2f;
+          margin: 0 0 18px;
+          line-height: 1.25;
+        }
+        .prod-quality__body {
+          font-size: clamp(0.875rem, 1.5vw, 1.05rem);
+          color: #555;
+          line-height: 1.65;
+          margin-bottom: 28px;
+        }
+        .prod-quality__features {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+        }
+        .prod-quality__feature {
+          display: flex;
+          align-items: flex-start;
+          gap: 14px;
+        }
+        .prod-quality__feat-icon {
+          background: #eaf7e6;
+          padding: 10px;
+          border-radius: 12px;
+          flex-shrink: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 44px;
+          height: 44px;
+        }
+        .prod-quality__feat-icon img {
+          width: 22px;
+          height: 22px;
+        }
+        .prod-quality__feat-title {
+          font-weight: 500;
+          color: #111;
+          margin: 0 0 4px;
+          font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+          line-height: 1.3;
+        }
+        .prod-quality__feat-desc {
+          color: #666;
+          font-size: clamp(0.82rem, 1.3vw, 0.92rem);
+          margin: 0;
+          line-height: 1.55;
+        }
+        .prod-quality__img-wrap {
+          flex: 1;
+          min-width: 280px;
+        }
+        .prod-quality__img {
+          width: 100%;
+          /* 4/3 aspect ratio */
+          aspect-ratio: 4 / 3;
+          object-fit: cover;
+          border-radius: 20px;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+          display: block;
+          transition: transform 0.4s ease;
+        }
+
+        /* ── Pipeline ── */
+        .prod-pipeline {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: clamp(24px, 3vw, 40px) 0 0;
+          border-top: 1px solid #f0f0f0;
+          flex-wrap: wrap;
+          gap: 16px;
+        }
+        .prod-pipeline__step {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 10px;
+          min-width: 100px;
+          z-index: 2;
+        }
+        .prod-pipeline__icon {
+          width: 68px;
+          height: 68px;
+          border-radius: 50%;
+          background: #eaf7e6;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 4px 10px rgba(44,122,75,0.08);
+          transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        .prod-pipeline__icon img {
+          width: 32px;
+          height: 32px;
+        }
+        .prod-pipeline__label {
+          font-size: clamp(0.82rem, 1.3vw, 0.9rem);
+          font-weight: 500;
+          color: #1a3b2f;
+          text-align: center;
+        }
+        .prod-pipeline__line {
+          flex: 1;
+          height: 2px;
+          background: linear-gradient(to right, #eaf7e6, rgba(234,247,230,0.2));
+          min-width: 20px;
+          z-index: 1;
+          /* line aligns with icon center (icon + label layout) */
+          margin-bottom: 28px;
+        }
+
+        /* ── 5. CTA ── */
+        .prod-cta-wrap {
+          max-width: 1240px;
+          margin: clamp(40px, 6vw, 80px) auto clamp(40px, 5vw, 60px);
+          padding: 0 clamp(20px, 4vw, 40px);
+        }
+        .prod-cta {
+          position: relative;
+          background-size: cover;
+          background-position: center;
+          border-radius: 14px;
+          padding: clamp(60px, 8vw, 120px) clamp(28px, 6vw, 80px);
+          color: #fff;
+          overflow: hidden;
+          box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+        }
+        .prod-cta__overlay {
+          position: absolute;
+          inset: 0;
+          background: rgba(0,0,0,0.12);
+          z-index: 1;
+        }
+        .prod-cta__content {
+          position: relative;
+          z-index: 2;
+          max-width: 680px;
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+        }
+        .prod-cta__heading {
+          font-size: clamp(1.6rem, 3.5vw, 3rem);
+          font-weight: 500;
+          line-height: 1.22;
+          letter-spacing: -0.5px;
+          margin: 0;
+        }
+        .prod-cta__sub {
+          font-size: clamp(0.95rem, 1.8vw, 1.2rem);
+          line-height: 1.65;
+          color: #f0f0f0;
+          margin: 0;
+        }
+        .prod-cta__btn {
+          background: #1c5a3e;
+          color: #fff;
+          border: none;
+          padding: 14px 36px;
+          border-radius: 30px;
+          font-weight: 600;
+          font-size: clamp(0.9rem, 1.5vw, 1rem);
+          cursor: pointer;
+          box-shadow: 0 4px 15px rgba(28,90,62,0.3);
+          transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+          width: fit-content;
+        }
+
+        /* ── ANIMATIONS ── */
         .prod-reveal-parent .prod-reveal-item {
           opacity: 0;
           transform: translateY(30px);
-          transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), 
-                      transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+          transition:
+            opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+            transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
           will-change: transform, opacity;
         }
-
-        /* Revealed State Trigger */
         .prod-reveal-parent.prod-active .prod-reveal-item {
           opacity: 1;
           transform: translateY(0);
         }
-
-        /* Interactive Stagger Delays */
         .delay-1 { transition-delay: 60ms !important; }
         .delay-2 { transition-delay: 180ms !important; }
         .delay-3 { transition-delay: 300ms !important; }
 
-        /* Cultivation Category Zoom Effect */
-        .prod-zoom-card:hover .zoom-target {
-          transform: scale(1.06);
-        }
-
-        /* Featured Selection Interactive Scale Transition */
+        /* ── HOVER INTERACTIONS ── */
+        .prod-zoom-card:hover .zoom-target { transform: scale(1.06); }
         .prod-hover-card:hover {
           transform: translateY(-8px);
-          box-shadow: 0 12px 30px rgba(0,0,0,0.08) !important;
+          box-shadow: 0 16px 36px rgba(0,0,0,0.1) !important;
           border-color: #2c7a4b !important;
         }
-        .prod-hover-card:hover .card-zoom-img {
-          transform: scale(1.04);
-        }
-
-        /* Quality Section Image Hover Effect */
+        .prod-hover-card:hover .card-zoom-img { transform: scale(1.04); }
         .image-tilt-effect:hover {
           transform: scale(1.02) rotateX(1deg) rotateY(1deg);
           box-shadow: 0 20px 40px rgba(0,0,0,0.12) !important;
         }
-
-        /* Process Steps Interactive Node Pops */
         .pipeline-step-node:hover .step-icon-container {
-          transform: scale(1.15);
+          transform: scale(1.14);
           background-color: #2c7a4b !important;
         }
         .pipeline-step-node:hover .step-icon-container img {
           filter: brightness(0) invert(1);
         }
-
-        /* Call To Action Interactive Button Feedback */
         .btn-premium-cta:hover {
           background-color: #15442e !important;
           transform: translateY(-2px);
           box-shadow: 0 6px 20px rgba(28,90,62,0.4) !important;
         }
-        .btn-premium-cta:active {
-          transform: translateY(0);
+        .btn-premium-cta:active { transform: translateY(0); }
+
+        /* ── MEDIA QUERIES ── */
+
+        /* Tablet: ≤ 1024px */
+        @media (max-width: 1024px) {
+          .prod-hero { min-height: 560px; }
+          .prod-feat__grid { grid-template-columns: repeat(2, 1fr); }
+          .prod-quality__inner { gap: 36px; }
         }
 
-        /* Responsive Pipeline Formatting Adjustments */
-        @media(max-width: 991px) {
-          .pipeline-flow-line { display: none !important; }
-          .pipeline-step-node { min-width: 45% !important; margin-bottom: 24px; }
+        /* Mobile/Tablet: ≤ 768px */
+        @media (max-width: 768px) {
+          .prod-hero {
+            min-height: 480px;
+            padding: 48px 24px;
+            border-radius: 0 0 16px 16px;
+          }
+          .prod-cat { padding: 40px 20px; }
+          .prod-cat__header { flex-direction: column; gap: 16px; }
+          .prod-cat__header-right { min-width: 0; }
+          .prod-cat__sub { border-left: none; padding-left: 0; border-top: 3px solid #6fcf4a; padding-top: 12px; }
+          .prod-cat__grid {
+            /* 2-col on tablet: portrait cards look great side by side */
+            grid-template-columns: repeat(2, 1fr);
+          }
+          .prod-cat-card {
+            /* slightly less tall on smaller screens */
+            aspect-ratio: 2 / 3;
+          }
+          .prod-feat { padding: 40px 20px; }
+          .prod-feat__grid { grid-template-columns: repeat(2, 1fr); }
+          .prod-quality { padding: 40px 20px; }
+          .prod-quality__inner {
+            flex-direction: column;
+            gap: 28px;
+          }
+          .prod-quality__text,
+          .prod-quality__img-wrap {
+            min-width: 0;
+            flex: none;
+            width: 100%;
+          }
+          .prod-quality__img { aspect-ratio: 16 / 9; }
+          .prod-pipeline { justify-content: center; gap: 20px; }
+          .prod-pipeline__line { display: none; }
+          .prod-pipeline__step { min-width: 80px; }
+          .prod-cta-wrap { padding: 0 16px; }
+          .prod-cta { padding: 60px 32px; }
+        }
+
+        /* Mobile: ≤ 480px */
+        @media (max-width: 480px) {
+          .prod-hero {
+            min-height: 380px;
+            padding: 36px 20px;
+          }
+          .prod-hero__title { font-size: 1.75rem; }
+          .prod-cat__grid { grid-template-columns: 1fr; }
+          .prod-cat-card { aspect-ratio: 4 / 3; }
+          .prod-feat__grid { grid-template-columns: 1fr; }
+          .prod-feat-card__img-wrap { aspect-ratio: 16 / 9; }
+          .prod-pipeline__step { min-width: 72px; }
+          .prod-cta { padding: 48px 24px; }
+          .prod-cta__heading { font-size: 1.5rem; }
+        }
+
+        /* Very small: ≤ 360px */
+        @media (max-width: 360px) {
+          .prod-hero { min-height: 320px; padding: 28px 16px; }
+          .prod-cat,
+          .prod-feat,
+          .prod-quality { padding-left: 16px; padding-right: 16px; }
+          .prod-cta-wrap { padding: 0 12px; }
+          .prod-cta { padding: 40px 20px; }
         }
       `}</style>
-
-    </div> 
+    </div>
   );
 }

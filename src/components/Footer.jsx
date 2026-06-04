@@ -64,15 +64,15 @@ function FooterSection({
           alignItems: "center",
           justifyContent: "center",
           textAlign: "center",
-          padding: "8px 20px 10px",
+          padding: "8px 20px 150px",
         }}
       >
-        <div style={{ maxWidth: "700px", margin: "0 auto" }}>
+        <div style={{ maxWidth: "700px", margin: "0 auto" , color: "#0A2710" , fontSize:"20px" , fontWeight:400}}>
           <span>{ctaTag}</span>
 
           <h2>
             {ctaTitle.split("\n").map((line, i) => (
-              <span key={i} style={{ display: "block" }}>
+              <span key={i} style={{ display: "block" ,  color: "#0A2710" , fontSize:"56px" , fontWeight:400}}>
                 {line}
               </span>
             ))}

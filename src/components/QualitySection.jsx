@@ -130,12 +130,20 @@ function QualitySection() {
       <style>{`
        .cta-section {
   background: #ffffff;
-  padding: 100px 0 110px;
+  padding: 80px 0 110px;
   font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
   overflow: hidden;
   text-align: left;
 }
 
+
+.cta-section .container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px; /* optional side spacing */
+}
+  
 /* HEADER */
 .cta-header {
   display: flex;
