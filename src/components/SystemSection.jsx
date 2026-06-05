@@ -44,22 +44,25 @@ function SystemSection() {
     <section 
       ref={sectionRef}
       style={{ 
-        backgroundColor: "#f6f6f1", 
+        backgroundColor: "#fffffff", 
         padding: "80px 20px",
         overflow: "hidden" 
       }}
     >
-      <div className="container" style={{ maxWidth: "1200px", margin: "0 auto" }}>
+      <div className="container" style={{ maxWidth: "1200px", margin: "0 auto", }}>
 
         {/* Badge */}
         <span
           style={{
             display: "inline-block",
-            border: "1px solid #2c7a4b",
+            border: "1px solid #065532",
+          backgroundColor:"#F7F8F6",
+            fontWeight:"400",
+            fontSize:"16px",
             borderRadius: "20px",
             fontStyle: "italic",
             padding: "4px 12px",
-            color: "#2c7a4b",
+            color: "#000000",
             marginBottom: "16px",
             opacity: isIntersecting ? 1 : 0,
             transform: isIntersecting ? "translateY(0)" : "translateY(15px)",
@@ -83,14 +86,16 @@ function SystemSection() {
           <div 
             style={{ 
               flex: "1 1 500px", 
-              minWidth: "300px",
+              Width: "491px",
+              height:"174px",
+              lineHeight:"58px",
               opacity: isIntersecting ? 1 : 0,
               transform: isIntersecting ? "translateY(0)" : "translateY(20px)",
               transition: transitionTiming,
               transitionDelay: "0.1s"
             }}
           >
-            <h2 style={{ fontSize: "36px", fontWeight: 700, marginBottom: "20px" }}>
+            <h2 style={{ fontSize: "48px", fontWeight: 400, marginBottom: "20px", color:"#000000"}}>
               Building a smarter Farm-to-Market Ecosystem
             </h2>
           </div>
@@ -99,14 +104,14 @@ function SystemSection() {
           <div 
             style={{ 
               flex: "1 1 500px", 
-              minWidth: "300px",
+              minWidth: "625px",
               opacity: isIntersecting ? 1 : 0,
               transform: isIntersecting ? "translateY(0)" : "translateY(20px)",
               transition: transitionTiming,
               transitionDelay: "0.2s"
             }}
           >
-            <p style={{ fontSize: "16px", lineHeight: "1.6", color: "#191C1A" }}>
+            <p style={{ fontSize: "24px", lineHeight: "32px", color: "#191C1A", fontWeight:"400", fontStyle:"DM Sans" }}>
               We are transforming agriculture by connecting farmers, infrastructure, and markets into one seamless system. 
               Through better coordination, transparent processes, and efficient supply chains, we enable farmers to grow stronger and businesses to operate with confidence.
             </p>
@@ -128,14 +133,14 @@ function SystemSection() {
               transitionDelay: "0.3s"
             }}
           >
-            <img src={SoilImg} alt="Farmers" style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "15px" }} />
+            <img src={SoilImg} alt="Farmers" style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "16px" }} />
           </div>
 
           {/* Card 2 - Stats */}
           <div 
             style={{ 
               flex: "1 1 220px", 
-              backgroundColor: "#fff", 
+              backgroundColor: "#F8F8F8", 
               borderRadius: "15px", 
               padding: "20px",
               boxShadow: "0 4px 20px rgba(0,0,0,0.02)",
@@ -145,9 +150,9 @@ function SystemSection() {
               transitionDelay: "0.4s"
             }}
           >
-            <h3 style={{ fontSize: "32px", fontWeight: "500", color: "#2c7a4b", marginBottom: "8px" }}>1000+</h3>
-            <h5 style={{ fontSize: "16px", fontWeight: "500", marginBottom: "12px" }}>Farmers Connected</h5>
-            <p style={{ fontSize: "14px", lineHeight: "1.5", color: "#4a4a4a" }}>
+            <h3 style={{ fontSize: "36px", fontWeight: "500", color: "#000000", marginBottom: "8px" }}>1000+</h3>
+            <h5 style={{ fontSize: "22px", fontWeight: "500", marginBottom: "12px" }}>Farmers Connected</h5>
+            <p style={{ fontSize: "16px",fontWeight:"400", lineHeight: "1.5", color: "#3E4A3F" }}>
               Building a growing network of farmers supported by a structured and reliable supply chain.
             </p>
           </div>
@@ -164,14 +169,14 @@ function SystemSection() {
               transitionDelay: "0.5s"
             }}
           >
-            <img src={PlantImg} alt="Plant" style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "15px" }} />
+            <img src={PlantImg} alt="Plant" style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "16px" }} />
           </div>
 
           {/* Card 4 - Stats */}
           <div 
             style={{ 
               flex: "1 1 220px", 
-              backgroundColor: "#c9f31d", 
+              backgroundColor: "#D0F24C", 
               borderRadius: "15px", 
               padding: "20px",
               boxShadow: "0 4px 20px rgba(0,0,0,0.02)",
@@ -181,9 +186,9 @@ function SystemSection() {
               transitionDelay: "0.6s"
             }}
           >
-            <h3 style={{ fontSize: "32px", fontWeight: "700", marginBottom: "8px" }}>End-to-End</h3>
-            <h5 style={{ fontSize: "16px", fontWeight: "600", marginBottom: "12px" }}>Supply Chain Management</h5>
-            <p style={{ fontSize: "14px", lineHeight: "1.5", color: "#000" }}>
+            <h3 style={{ fontSize: "36px", fontWeight: "500", marginBottom: "8px" }}>End-to-End</h3>
+            <h5 style={{ fontSize: "22px", fontWeight: "500", marginBottom: "12px" }}>Supply Chain Management</h5>
+            <p style={{ fontSize: "16px", fontWeight:"400", lineHeight: "1.5", color: "#3E4A3F" }}>
               From farm operations to delivery, ensuring efficiency, quality, and transparency at every stage.
             </p>
           </div>

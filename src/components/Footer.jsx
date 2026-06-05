@@ -64,7 +64,7 @@ function FooterSection({
           alignItems: "center",
           justifyContent: "center",
           textAlign: "center",
-          padding: "8px 20px 150px",
+          padding: "8px 20px 10px",
         }}
       >
         <div style={{ maxWidth: "700px", margin: "0 auto" , color: "#0A2710" , fontSize:"20px" , fontWeight:400}}>
@@ -72,7 +72,7 @@ function FooterSection({
 
           <h2>
             {ctaTitle.split("\n").map((line, i) => (
-              <span key={i} style={{ display: "block" ,  color: "#0A2710" , fontSize:"56px" , fontWeight:400}}>
+              <span key={i} style={{ display: "block" ,  color: "#0A2710" , fontSize:"52px" , fontWeight:400}}>
                 {line}
               </span>
             ))}
@@ -95,118 +95,138 @@ function FooterSection({
       </section>
 
       {/* FOOTER */}
-      <section
-        ref={footerCardRef}
-        style={{
-          position: "relative",
-          zIndex: 1,
-          padding: "0 15px",
-        }}
-      >
-        <div
-          style={{
-            // maxWidth: "1200px",
-            width: "calc(100% - 30px)",
-            margin: "0 auto",
-            backgroundColor: "#fff",
-            borderRadius: "12px",
-          }}
-        >
-          <div style={{ padding: "60px", boxSizing: "border-box" }}>
+     <section
+  ref={footerCardRef}
+  style={{
+    position: "relative",
+    zIndex: 1,
+    padding: "30px",
+  }}
+>
+  <div
+    style={{
+      maxWidth: "1380px",
+      height : " 406.86px",
+      margin: "0 auto",
+      backgroundColor: "#fff",
+      padding: "48px",
+      gap:"52.01px",
+      borderRadius: "20px",
+    }}
+  >
+    {/* ================= TOP FOOTER ================= */}
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        gap: "50.01px",
+        flexWrap: "wrap",
+      }}
+    >
+      {/* ================= BRAND ================= */}
+      <div style={{ maxWidth: "344px", width: "100%" }}>
+        <img
+          src={Logo}
+          alt="Logo"
+          style={{ width: "145px", marginBottom: "16px" }}
+        />
 
-            <div style={{ display: "flex", flexWrap: "wrap" }}>
+        <p style={{ lineHeight: "24px", color: "#04303B" }}>
+          VanShakti brings together farmers, infrastructure, and markets to
+          create a structured and reliable farm-to-market ecosystem.
+        </p>
 
-              {/* BRAND */}
-              <div style={{ width: "32%" }}>
-                <img src={Logo} alt="Logo" style={{ width: "145px", padding: "0 , 10px " }} />
-                <p>VanShakti brings together farmers, infrastructure, and markets to create a structured and reliable farm-to-market ecosystem.</p>
-                <p>info@vanshakti.com</p>
-              </div>
+        <p style={{ marginTop: "20px", color: "#3B3939" }}>
+          info@Vanshakti.com
+        </p>
+      </div>
 
-              {/* LINKS */}
-              <div style={{ width: "45%", display: "flex" }}>
+      {/* ================= QUICK LINKS ================= */}
+      <div style={{ width: "210px" }}>
+        <h6 className="footer-heading">Quick links</h6>
+        <ul style={{ listStyle: "none", padding: 0 }}>
+          {[
+            { label: "Home", path: "/" },
+            { label: "About us", path: "/about" },
+            { label: "Products", path: "/products" },
+            { label: "Sustainability", path: "/sustainability" },
+          ].map((item) => (
+            <li key={item.label}>
+              <span
+                onClick={() => navigate(item.path)}
+                className="footer-link"
+              >
+                {item.label}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
 
-                {/* QUICK LINKS */}
-                <div style={{ flex: 1 }}>
-                  <h6 className="footer-heading">Quick links</h6>
-                  <ul style={{ listStyle: "none", padding: 0 }}>
-                    {[
-                      { label: "Home", path: "/" },
-                      { label: "About us", path: "/about" },
-                      { label: "Products", path: "/products" },
-                      { label: "Sustainability", path: "/sustainability" },
-                    ].map((item) => (
-                      <li key={item.label}>
-                        <span
-                          onClick={() => navigate(item.path)}
-                          className="footer-link"
-                        >
-                          {item.label}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+      {/* ================= NAVIGATION ================= */}
+      <div style={{ width: "210px" }}>
+        <h6 className="footer-heading">Navigation</h6>
+        <ul style={{ listStyle: "none", padding: 0 }}>
+          {[
+            { label: "Contact us", path: "/contact" },
+            { label: "Our Network", path: "/ournetwork" },
+            { label: "Blogs", path: "/blog" },
+            { label: "Privacy Policy", path: "/privacy" },
+          ].map((item) => (
+            <li key={item.label}>
+              <span
+                onClick={() => navigate(item.path)}
+                className="footer-link"
+              >
+                {item.label}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
 
-                {/* NAVIGATION */}
-                <div style={{ flex: 1 }}>
-                  <h6 className="footer-heading"> Navigation</h6>
-                  <ul style={{ listStyle: "none", padding: 0 }}>
-                    {[
-                      { label: "Contact us", path: "/contact" },
-                      { label: "Our Network", path: "/ournetwork" },
-                      { label: "Blogs", path: "/blog" },
-                      { label: "Terms", path: "#" },
-                    ].map((item) => (
-                      <li key={item.label}>
-                        <span
-                          onClick={() => navigate(item.path)}
-                          className="footer-link"
-                        >
-                          {item.label}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+      {/* ================= SOCIAL ================= */}
+      <div style={{ width: "210px" }}>
+        <h6 className="footer-heading">Social Handle</h6>
+        <ul style={{ listStyle: "none", padding: 0 }}>
+          {[
+            { name: "Facebook", url: "https://facebook.com" },
+            { name: "Instagram", url: "https://instagram.com" },
+            { name: "Threads", url: "https://threads.net" },
+            { name: "Pinterest", url: "https://pinterest.com" },
+          ].map((item) => (
+            <li key={item.name}>
+              <a
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-link"
+              >
+                {item.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
 
-              </div>
 
-              {/* SOCIAL */}
-              <div style={{ width: "20%" }}>
-                <h6 className="footer-heading" >Social Handle</h6>
-                <ul style={{ listStyle: "none", padding: 0 }}>
-                  {[
-                    { name: "Facebook", url: "https://facebook.com" },
-                    { name: "Instagram", url: "https://instagram.com" },
-                    { name: "Youtube", url: "https://youtube.com" },
-                    { name: "Twitter", url: "https://twitter.com" },
-                  ].map((item) => (
-                    <li key={item.name}>
-                      <a
-                        href={item.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="social-link"
-                      >
-                        {item.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+{/* ================= DIVIDER ================= */}
+<hr style={{ margin: "20px 0", borderColor: "#3B3939" }} />
 
-            </div>
-
-            <hr />
-
-            <p style={{ textAlign: "center" }}>
-              ©2026 Vanshakti. All Rights Reserved.
-            </p>
-
-          </div>
-        </div>
-      </section>
+{/* ================= COPYRIGHT ================= */}
+<p
+  style={{
+    textAlign: "center",
+    color: "#3B3939",
+    fontSize: "14px",
+    marginBottom:"0.59px"
+  }}
+>
+  © 2026 VanShakti. All Rights Reserved.
+</p>
+  </div>
+</section>
 
       {/* CSS */}
       <style>{`
@@ -226,7 +246,7 @@ function FooterSection({
   }
 
   .social-link {
-    color: #000;
+    color: #3B3939;
     text-decoration: none;
     transition: all 0.3s ease;
     display: inline-block;
@@ -240,7 +260,7 @@ function FooterSection({
 
   .footer-heading {
     font-size: 18px !important;
-    color: #04303B !important;
+    color: ##04303B !important;
     font-family: "Inter", sans-serif;
     font-weight: 400;
     line-height: 28.8px;

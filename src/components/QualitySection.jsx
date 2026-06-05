@@ -159,28 +159,33 @@ function QualitySection() {
 
 /* TITLE */
 .cta-title {
-  font-size: clamp(2rem, 4vw, 3.5rem);
-  font-weight: 500;
+  font-size: 40px;
+  lineheight: 48px;
+  font-weight: 400;
   color: #000000;
 }
 
 /* BADGE */
 .cta-badge {
   display: inline-block;
-  padding: 6px 14px;
-  border: 1px solid #0a7a3d;
-  border-radius: 20px;
-  font-size: 14px;
-  color: #000000;
+  padding: 8px 16px;
+  border: 1px solid #0d7a43;
+  background-color: #F7F8F6;
+  border-radius: 16px;
+  font-size: 16px;
+  font-weight: 400;
+  font-style: italic;
+  color: #111111;
   margin-bottom: 10px;
+  font-family: "DM Sans", sans-serif;
 }
 
 /* BUTTON */
 .cta-btn {
-  background: #d7f03d;
+  background: #D0F44D;
   border: none;
-  border-radius: 50px;
-  padding: 14px 32px;
+  border-radius: 42px;
+  padding: 9px 20px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -262,17 +267,17 @@ function QualitySection() {
 
 /* NUMBER CIRCLE */
 .step-number {
-  width: 42px;
-  height: 42px;
-  min-width: 42px;
+  width: 36px;
+  height: 36px;
+  // min-width: 42px;
   border-radius: 50%;
   background-color: #D0F44D;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 600;
-  font-size: 16px;
-  color: #000;
+  font-weight: 500;
+  font-size: 18px;
+  color: #065532;
   flex-shrink: 0;
   margin-top: 2px;
   box-shadow: 0 6px 15px rgba(208, 244, 77, 0.35);
@@ -299,15 +304,16 @@ function QualitySection() {
 
 .step-title {
   margin: 0;
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 22px;
+  font-weight: 500;
   color: #191C1A;
 }
 
 .step-text {
   margin: 4px 0 0;
-  font-size: 14px;
-  line-height: 1.5;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
   color: #191C1A;
 }
 

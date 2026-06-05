@@ -104,12 +104,14 @@ function StatsSection() {
         {/* Badge */}
         <span
           style={{
+            fontFamily:"DM Sans",
             display: "inline-block",
-            border: "1.5px solid #0d7a43",
-            borderRadius: "40px",
-            padding: "3px 15px",
-            fontSize: "14px",
-            fontWeight: 500,
+            border: "1px solid #0d7a43",
+            backgroundColor:"#F7F8F6",
+            borderRadius: "16px",
+            padding: "8px 16px",
+            fontSize: "16px",
+            fontWeight: 400,
             fontStyle: "italic",
             color: "#111111",
             marginBottom: "24px",
@@ -124,9 +126,9 @@ function StatsSection() {
         {/* Heading */}
         <h2
           style={{
-            fontSize: "42px",
-            fontWeight: 500,
-            color: "#111111",
+            fontSize: "40px",
+            fontWeight: 400,
+            color: "#191C1A",
             marginBottom: "18px",
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? "translateY(0)" : "translateY(20px)",
@@ -140,10 +142,10 @@ function StatsSection() {
         {/* Subtext */}
         <p
           style={{
-            fontSize: "18px",
-            lineHeight: 1.2,
-            color: "#555555",
-            maxWidth: "760px",
+            fontSize: "24px",
+            lineHeight: "32px",
+            color: "#000000",
+            Width: "1200px",
             margin: "0 0 64px 0",
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? "translateY(0)" : "translateY(20px)",
@@ -162,7 +164,7 @@ function StatsSection() {
             display: "flex",
             justifyContent: "space-between",
             flexWrap: "wrap",
-            gap: "32px 20px",
+            gap: "20px 2px",
           }}
         >
           {stats.map((item, idx) => (
@@ -181,22 +183,22 @@ function StatsSection() {
             >
               <h3
                 style={{
-                  fontSize: "30px",
+                  fontSize: "32px",
                   fontWeight: 500,
                   color: "#065532",
                   marginBottom: "8px",
-                  letterSpacing: "-0.02em",
+                  letterSpacing: "0%",
                 }}
               >
                 <AnimatedStatCounter targetString={item.number} triggerStart={isVisible} />
               </h3>
               <p
                 style={{
-                  fontSize: "15px",
-                  fontWeight: 500,
-                  color: "#333333",
+                  fontSize: "18px",
+                  fontWeight: 400,
+                  color: "#A2A2A2",
                   margin: 0,
-                  lineHeight: "1.4",
+                  lineHeight: "0%",
                 }}
               >
                 {item.label}

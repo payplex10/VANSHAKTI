@@ -44,12 +44,14 @@ export default function CertificationSection() {
         {/* Badge */}
         <div style={{
           display: "inline-block",
-          border: "1.5px solid #0a7a46",
-          borderRadius: "40px",
-          padding: "6px 20px",
+          border: "1px solid #0a7a46",
+           backgroundColor:"#F7F8F6",
+          borderRadius: "16px",
+          padding: "8px 16px",
           background: "#ffffff",
           color: "#111",
-          fontSize: "0.82rem",
+          fontSize: "16px",
+          fontWeight: 400,
           fontStyle: "italic",
           marginBottom: "24px",
         }}>
@@ -58,10 +60,10 @@ export default function CertificationSection() {
 
         {/* Heading */}
         <h2 style={{
-          fontSize: "clamp(1.6rem, 3.5vw, 2.4rem)",
-          fontWeight: 600,
-          color: "#111111",
-          lineHeight: 1.2,
+          fontSize: "40px",
+          fontWeight: 400,
+          color: "#191C1A",
+          lineHeight: "48px",
           marginBottom: "16px",
           maxWidth: "700px",
         }}>
@@ -70,11 +72,12 @@ export default function CertificationSection() {
 
         {/* Subtext */}
         <p style={{
-          fontSize: "0.97rem",
-          lineHeight: 1.7,
-          color: "#444444",
-          maxWidth: "640px",
-          marginBottom: "48px",
+          fontSize: "24px",
+          fontWeight:400,
+          lineHeight: "32px",
+          color: "#000000",
+          // maxWidth: "640px",
+          // marginBottom: "4px",
         }}>
           VanShakti follows standardized processes and quality benchmarks to
           ensure consistency, safety, and reliability across the agricultural

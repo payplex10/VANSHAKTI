@@ -69,7 +69,18 @@ const About = () => {
   const navigate = useNavigate();
 const [currentIndex, setCurrentIndex] = useState(0);
   const intervalRef = useRef(null);
-  
+  const isScrolling = useRef(false);
+const resumeTimeout = useRef(null);
+const [isHovered, setIsHovered] = useState(false);
+
+useEffect(() => {
+  if (isHovered) {
+    clearInterval(intervalRef.current);
+    clearTimeout(resumeTimeout.current);
+  } else {
+    startAutoSlide();
+  }
+}, [isHovered]);
 
   const farmImages = [Farm1, Farm2, Farm3, Farm4];
   const teamImages = [Team1, Team2, Team3, Team4];
@@ -112,21 +123,37 @@ const [currentIndex, setCurrentIndex] = useState(0);
   ];
 
   
-    useEffect(() => {
-    intervalRef.current = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % approaches.length);
-    }, 3000);
+   useEffect(() => {
+  startAutoSlide();
 
-    return () => clearInterval(intervalRef.current);
-  }, []);
+  return () => {
+    clearInterval(intervalRef.current);
+    clearTimeout(resumeTimeout.current);
+  };
+}, []);
+
+const startAutoSlide = () => {
+  clearInterval(intervalRef.current);
+
+  intervalRef.current = setInterval(() => {
+    setCurrentIndex((prev) => (prev + 1) % approaches.length);
+  }, 3000);
+};
 
   // Handle manual scroll via wheel
- const handleWheel = (e) => {
+const handleWheel = (e) => {
+  if (!isHovered) return;
+
   e.preventDefault();
 
-  if (isScrolling) return;
+  if (isScrolling.current) return;
 
-  setIsScrolling(true);
+  if (Math.abs(e.deltaY) < 10) return; // 🔥 prevents accidental scroll
+
+  isScrolling.current = true;
+
+  clearInterval(intervalRef.current);
+  clearTimeout(resumeTimeout.current);
 
   setCurrentIndex((prev) => {
     if (e.deltaY > 0) {
@@ -137,9 +164,14 @@ const [currentIndex, setCurrentIndex] = useState(0);
   });
 
   setTimeout(() => {
-    setIsScrolling(false);
-  }, 600); // matches animation duration
+    isScrolling.current = false;
+  }, 500);
+
+  resumeTimeout.current = setTimeout(() => {
+    startAutoSlide();
+  }, 2000);
 };
+
 
   useEffect(() => {
     document.title = "About VanShakti | Sustainable Agriculture & Farmer Empowerment";
@@ -185,7 +217,7 @@ const [currentIndex, setCurrentIndex] = useState(0);
         .vs-hero__badge {
           display: inline-block;
           border: 1px solid rgba(255,255,255,0.7);
-          color: #fff;
+          color: #ffffff;
           font-size: clamp(0.7rem, 1.5vw, 0.85rem);
           padding: 6px 20px;
           border-radius: 30px;
@@ -231,25 +263,28 @@ const [currentIndex, setCurrentIndex] = useState(0);
           align-items: start;
         }
         .vs-why__h2 {
-          font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+          font-size: 40px ;
           font-weight: 400;
-          line-height: 1.2;
+          line-height: 48px;
           margin-bottom: 20px;
           font-family: 'DM Sans', sans-serif;
+          color: #191C1A;
+
         }
         .vs-why__p {
-          font-size: clamp(1rem, 1.8vw, 1.5rem);
-          line-height: 1.55;
-          color: #333;
+        fontfamily : DM Sans;
+          font-size: 24px;
+          line-height: 32px;
+          color: #191C1A;
         }
         .vs-img-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
           gap: 14px;
         }
-        .vs-img-col { display: flex; flex-direction: column; gap: 14px; }
-        .vs-img-tall { width: 100%; aspect-ratio: 3/4.2; object-fit: cover; border-radius: 14px; }
-        .vs-img-short { width: 100%; aspect-ratio: 3/2; object-fit: cover; border-radius: 14px; }
+        .vs-img-col { display: flex; flex-direction: column; gap: 16px;  }
+        .vs-img-tall { width: 250px; height:250px; aspect-ratio: 3/4.2; object-fit: cover; border-radius: 16px; }
+        .vs-img-short { width: 250px; height:120px;  aspect-ratio: 3/2; object-fit: cover; border-radius: 16px; }
 
         @media (max-width: 768px) {
           .vs-why__grid { grid-template-columns: 1fr; }
@@ -281,7 +316,7 @@ const [currentIndex, setCurrentIndex] = useState(0);
           border-radius: 14px;
           min-height: 280px;
           padding: clamp(20px, 3vw, 32px) clamp(16px, 2.5vw, 24px);
-          background: #fff;
+          background: #ffffff;
           box-shadow: 0 4px 12px rgba(0,0,0,0.03);
           display: flex;
           flex-direction: column;
@@ -346,7 +381,7 @@ const [currentIndex, setCurrentIndex] = useState(0);
 
 /* ✅ Responsive text (VERY IMPORTANT) */
 .vs-connections__text h2 {
-  color: #fff;
+  color: #ffffff;
   font-weight: 400;
   font-size: clamp(22px, 4vw, 56px);
   line-height: 1.2;
@@ -444,7 +479,7 @@ const [currentIndex, setCurrentIndex] = useState(0);
 
         /* ── Agriculture section ── */
         .vs-agri {
-          background: #F5F5F2;
+          background: #ffffff;
           padding: clamp(32px, 5vw, 30px) clamp(20px, 5vw, 10px);
         
         }
@@ -542,7 +577,7 @@ const [currentIndex, setCurrentIndex] = useState(0);
 
         /* ── Team ── */
         .vs-team {
-          background: #F6F6F1;
+          background: #ffffff;
           padding:  10px auto;
           text-align: center;
         }
@@ -579,7 +614,7 @@ const [currentIndex, setCurrentIndex] = useState(0);
           flex-direction: column;
           align-items: center;
           padding: clamp(40px, 6vw, 80px) clamp(20px, 5vw, 40px);
-          background: #fff;
+          background: #ffffff;
         }
         .vs-supply__logo {
           width: clamp(180px, 35vw, 400px);
@@ -735,83 +770,109 @@ const [currentIndex, setCurrentIndex] = useState(0);
         An Integrated Approach to<br />Agriculture
       </motion.h2>
 
-   <div
-  onWheel={handleWheel}
+ <div
+  onWheel={(e) => {
+    e.preventDefault();
+    handleWheel(e);
+  }}
+  onMouseEnter={() => setIsHovered(true)}
+  onMouseLeave={() => setIsHovered(false)}
   style={{
     height: "300px",
     position: "relative",
     overflow: "hidden",
-    display: "flex",
-    // alignItems: "center",
+
+    cursor: isHovered ? "grab" : "default",
+    userSelect: "none",
   }}
 >
-  {/* LEFT CONTENT (SLIDER) */}
-  <div
-    style={{
-      width: "100%",
-      position: "relative",
-    }}
-  >
-    <AnimatePresence mode="wait">
-      <motion.div
-        key={currentIndex}
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -40 }}
-        transition={{ duration: 0.5, ease: "easeInOut" }}
+      {/* SLIDER */}
+      <div
+        style={{
+  height: "300px",
+  position: "relative",
+  overflow: "hidden",
+  display: "flex",
+  cursor: isHovered ? "grab" : "default",
+}}
+      >
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentIndex}
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -40 }}
+            transition={{
+              duration: 0.45,
+              ease: [0.25, 0.1, 0.25, 1],
+            }}
+          >
+            <div
+              style={{
+                padding: "40px",
+                background: "#ffffff",
+                borderRadius: "20px",
+                // border: "1px solid #e8e8e8",
+                // boxShadow: "0 12px 40px rgba(0,0,0,0.08)",
+              }}
+            >
+              <h3
+                style={{
+                  color: "#065532",
+                  marginBottom: "16px",
+                  fontSize: "28px",
+                  fontWeight: 600,
+                }}
+              >
+                {approaches[currentIndex].title}
+              </h3>
+
+              <p
+                style={{
+                  color: "#444",
+                  lineHeight: "1.8",
+                  fontSize: "16px",
+                }}
+              >
+                {approaches[currentIndex].text}
+              </p>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      {/* DOTS */}
+      <div
         style={{
           position: "absolute",
-          width: "100%",
+          right: "10px", // FIXED (was negative)
+          top: "50%",
+          transform: "translateY(-50%)",
+          display: "flex",
+          flexDirection: "column",
+          gap: "10px",
+          zIndex: 10,
         }}
       >
-        <div
-          style={{
-            padding: "30px",
-            background: "#f5f5f5",
-            borderRadius: "10px",
-            boxShadow: "0 5px 15px rgba(0,0,0,0.1)",
-          }}
-        >
-          <h3 style={{ color: "#065532" }}>
-            {approaches[currentIndex].title}
-          </h3>
-
-          <p style={{ color: "#000000" }}>
-            {approaches[currentIndex].text}
-          </p>
-        </div>
-      </motion.div>
-    </AnimatePresence>
-  </div>
-
-  {/* RIGHT SIDE VERTICAL DOTS */}
-  <div
-    style={{
-      position: "absolute",
-      right: "10px",
-      top: "30%",
-      transform: "translateY(-50%)",
-      display: "flex",
-      flexDirection: "column",
-      padding: "5px",
-      gap: "10px",
-    }}
-  >
-    {approaches.map((_, index) => (
-      <div
-        key={index}
-        onClick={() => setCurrentIndex(index)}
-        style={{
-          width: currentIndex === index ? "10px" : "8px",
-          height: currentIndex === index ? "10px" : "8px",
-          borderRadius: "50%",
-          backgroundColor: currentIndex === index ? "#065532" : "#cfcfcf",
-          cursor: "pointer",
-          transition: "0.9s",
-        }}
-      />
-    ))}
-  </div>
+        {approaches.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentIndex(index)}
+            style={{
+              width: currentIndex === index ? "10px" : "8px",
+              height: currentIndex === index ? "28px" : "8px",
+              borderRadius: "20px",
+              border: "none",
+              background:
+                currentIndex === index ? "#065532" : "#cfcfcf",
+              cursor: "pointer",
+              transition: "all 0.3s ease",
+            }}
+          />
+        ))}
+      </div>
+    
+   
 </div>
  </div>
   </div>

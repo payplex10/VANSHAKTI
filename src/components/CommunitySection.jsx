@@ -60,7 +60,7 @@ function CommunitySection() {
             <span className="community-badge">Impact</span>
             <h2 className="community-title">Delivering Outcomes<br />Across Agriculture</h2>
             <p className="community-body">
-              VanShakti is driving meaningful improvements across the agricultural ecosystem—enhancing efficiency, strengthening reliability, and creating better value for all stakeholders.
+              VanShakti is driving meaningful improvements across the agricultural ecosystem-enhancing efficiency, strengthening reliability, and creating better value for all stakeholders.
             </p>
           </div>
         </div>
@@ -69,7 +69,7 @@ function CommunitySection() {
 
       <style>{`
         .community-section { background-color: #ffffff; padding: 10px 0; overflow: hidden; }
-        .community-container { max-width: 1140px; margin: 0 auto; padding: 0 24px; display: flex; flex-direction: column; gap: 60px; }
+        .community-container { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; flex-direction: column; gap: 60px; }
         .community-row { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 40px; align-items: center; }
         .community-row-reverse .community-img-wrap { order: 2; }
         .community-row-reverse .community-text-col { order: 1; }
@@ -89,15 +89,15 @@ function CommunitySection() {
         }
 
         /* hover effects on image */
-        .community-img-wrap { border-radius: 16px; overflow: hidden; width: 100%; box-shadow: 0 10px 30px rgba(0,0,0,0.04); transition: transform 0.4s ease, box-shadow 0.4s ease; }
-        .community-img { width: 100%; height: 360px; object-fit: cover; display: block; transition: transform 0.5s ease; }
+        .community-img-wrap { border-radius: 17.5px; overflow: hidden; width: 100%; box-shadow: 0 10px 30px rgba(0,0,0,0.04); transition: transform 0.4s ease, box-shadow 0.4s ease; }
+        .community-img { width: 600px; height: 350px; object-fit: cover; display: block; transition: transform 0.5s ease; }
         .community-img-wrap:hover { transform: translateY(-5px); box-shadow: 0 20px 35px rgba(28,90,62,0.1); }
         .community-img-wrap:hover .community-img { transform: scale(1.03); }
 
         .community-text-col { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; }
-        .community-badge { display: inline-block; border: 1px solid #cce0d6; border-radius: 20px; padding: 6px 18px; background-color: #f4faf7; color: #1c5a3e; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.03em; margin-bottom: 16px; }
-        .community-title { font-size: 2rem; font-weight: 600; color: #1a1a1a; line-height: 1.25; margin: 0 0 16px 0; letter-spacing: -0.02em; }
-        .community-body { font-size: 0.95rem; line-height: 1.6; color: #5a5a5a; margin: 0; max-width: 480px; }
+        .community-badge { display: inline-block; border: 1px solid #065532; border-radius: 16px; padding: 6px 18px; background-color: #F7F8F6; color: #000000; font-size: 16px; font-weight: 400; letter-spacing: 0; margin-bottom: 16px; }
+        .community-title { font-size: 40px; font-weight: 400; color: #000000; line-height: 48px; margin: 0 0 16px 0; letter-spacing: 0; }
+        .community-body { font-size: 24px; line-height: 32px; font-weight:400; color: #000000; margin: 0; max-width: 480px; }
 
         /* RESPONSIVE ANIMATION */
         @media (max-width: 768px) {

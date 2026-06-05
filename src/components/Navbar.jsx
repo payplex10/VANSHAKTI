@@ -3,98 +3,99 @@ import { useEffect, useState } from "react";
 import LogoLight from "../assets/Vanshaktilogo_video.svg";
 import LogoDark from "../assets/logo.png";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import "../styles/global.css";
 
 function Navbar() {
   const location = useLocation();
   const isHome = location.pathname === "/";
 
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
-  const handleScroll = () => {
-    const hero = document.getElementById("hero");
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 60);
+    };
 
-    if (hero) {
-      const heroBottom = hero.offsetTop + hero.offsetHeight;
-      setIsScrolled(window.scrollY >= heroBottom - 120);
+    if (isHome) {
+      window.addEventListener("scroll", handleScroll);
+      handleScroll();
+    } else {
+      setIsScrolled(true);
     }
-  };
 
-  if (isHome) {
-    window.addEventListener("scroll", handleScroll);
-    handleScroll();
-  }
-
-  return () => window.removeEventListener("scroll", handleScroll);
-}, [isHome]);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [isHome]);
 
   const isTransparent = isHome && !isScrolled;
 
   return (
-  <nav
-  className="navbar navbar-expand-lg fixed-top"
-  style={{
-    backgroundColor: isTransparent ? "transparent" : "#ffffff",
+    <nav
+      className="navbar navbar-expand-lg fixed-top custom-navbar"
+      style={{
+        backgroundColor: isTransparent
+          ? "rgba(255,255,255,0.08)"
+          : "#ffffff",
 
-    /* ✅ BLUR ONLY WHEN TRANSPARENT */
-    backdropFilter: isTransparent ? "blur(14px)" : "none",
-    WebkitBackdropFilter: isTransparent ? "blur(14px)" : "none",
+        backdropFilter: isTransparent ? "blur(20px)" : "none",
+        WebkitBackdropFilter: isTransparent ? "blur(20px)" : "none",
 
-    /* ✅ SIZE FROM DESIGN */
-    width: "1200px",
-    maxWidth: "1320px",
-    height: "64px",
+        // width: "calc(100% - 32px)",
+        maxWidth: "1200px",
+        minHeight: "64px",
 
-    /* ✅ CENTER POSITIONING */
-    top: "30px",
-    left: "50%",
-    transform: "translateX(-50%)",
+        top: "49px",
+        left: "50%",
+        borderRadius: "56px",
+        transform: "translateX(-50%)",
 
-    /* spacing */
-    padding: "8px 24px",
+        padding: "8px 8px",
+        margin : "8px 8px",
+       
 
-    /* BORDER */
-    border: isTransparent
-      ? "1px solid rgba(255,255,255,0.35)"
-      : "1px solid #FFFFFF1A",
+        border: isTransparent
+          ? "1px solid rgba(255,255,255,0.25)"
+          : "1px solid rgba(0,0,0,0.08)",
 
-    borderRadius: "56px",
+        borderRadius: "56px",
 
-    /* SHADOW */
-    boxShadow: isTransparent
-      ? "none"
-      : "0 4px 20px rgba(0,0,0,0.08)",
+        boxShadow: isTransparent
+          ? "0 8px 32px rgba(0,0,0,0.08)"
+          : "0 4px 20px rgba(0,0,0,0.08)",
 
-    zIndex: 1000,
-    transition: "all 0.3s ease",
-
-    /* IMPORTANT */
-    position: "fixed",
-  }}
->
-      <div className="container-fluid px-4">
-        {/* LOGO */}
-        <Link className="navbar-brand d-flex align-items-center m-0" to="/">
-         <img
-  src={isTransparent ? LogoLight : LogoDark}
-  alt="Logo"
-  style={{
-    width: "148px",
-    height: "45px",
-    objectFit: "contain",
-  }}
-/>
+        zIndex: 1000,
+        transition: "all 0.3s ease",
+      }}
+    >
+      <div className="container-fluid px-0">
+        {/* Logo */}
+        <Link
+          className="navbar-brand d-flex align-items-center m-0"
+          to="/"
+        >
+          <img
+            src={isTransparent ? LogoLight : LogoDark}
+            alt="Logo"
+            style={{
+              width: "clamp(120px, 12vw, 148px)",
+              height: "auto",
+              objectFit: "contain",
+            }}
+          />
         </Link>
 
-        {/* MOBILE TOGGLE */}
+        {/* Mobile Toggle */}
         <button
           className="navbar-toggler border-0 shadow-none"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNav"
           aria-controls="navbarNav"
-          aria-expanded="false"
+          aria-expanded={isMenuOpen}
           aria-label="Toggle navigation"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           <span
             className="navbar-toggler-icon"
@@ -104,11 +105,14 @@ function Navbar() {
           ></span>
         </button>
 
-        {/* NAVBAR MENU */}
-        <div className="collapse navbar-collapse" id="navbarNav">
+        {/* Menu */}
+        <div
+          className="collapse navbar-collapse"
+          id="navbarNav"
+        >
           <ul
             className="navbar-nav mx-auto justify-content-center"
-            style={{ gap: "28px" }}
+            style={{ gap: "23px" }}
           >
             {[
               { name: "Home", path: "/" },
@@ -122,8 +126,8 @@ function Navbar() {
                   className="nav-link"
                   to={item.path}
                   style={{
-                    color: isTransparent ? "#ffffff" : "#1F1F1F",
-                    fontWeight: 500,
+                    color: isTransparent ? "#ffffff" : "#04303B",
+                    fontWeight: 400,
                     fontSize: "16px",
                     transition: "0.3s ease",
                   }}
@@ -137,7 +141,7 @@ function Navbar() {
           <div className="d-flex justify-content-end">
             <Link
               to="/contact"
-              className="btn"
+              className="btn partner-btn"
               style={{
                 backgroundColor: "#D0F24C",
                 color: "#101010",
@@ -148,6 +152,7 @@ function Navbar() {
                 fontSize: "15px",
                 display: "flex",
                 alignItems: "center",
+                justifyContent: "center",
                 gap: "8px",
               }}
             >

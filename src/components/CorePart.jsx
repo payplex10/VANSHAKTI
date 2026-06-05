@@ -67,7 +67,7 @@ export default function CorePart() {
           background: #ffffff;
           padding: 5px 20px;
           font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
-          min-height: 100vh;
+          height: 722px;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -79,7 +79,7 @@ export default function CorePart() {
           overflow: hidden;
           background-color: var(--green-dark);
           border-radius: 22px;
-          padding: 52px 48px 56px;
+          padding: 24px;
           width: 100%;
           max-width: 1200px;
         }
@@ -113,10 +113,14 @@ export default function CorePart() {
         .hws-badge {
           display: inline-block;
           border: 1.5px solid rgba(255,255,255,0.40);
-          color: var(--text-white);
-          font-size: 0.73rem;
-          font-weight: 600;
-          letter-spacing: 0.05em;
+          color: #FFFFFF;
+          font-family: 'DM Sans', sans-serif;
+          font-style: italic;
+           line-height: 24px;
+           letter-spacing: 0;
+          font-size: 16px;
+          font-weight: 400;
+          letter-spacing: 0%;
           padding: 5px 15px;
           border-radius: 999px;
           margin-bottom: 26px;
@@ -124,19 +128,20 @@ export default function CorePart() {
 
         /* ── Heading ────────────────────────────────────── */
         .hws-headline {
-          color: var(--text-white);
-          font-size: clamp(1.9rem, 3.5vw, 2.8rem);
-          font-weight: 700;
-          line-height: 1.2;
+          color: #FFFFFF;
+          font-size: 56px;
+          font-weight: 400;
+          line-height: 63px;
           margin-bottom: 0;
         }
 
         .hws-subtext {
-          color: var(--text-muted);
-          font-size: 0.93rem;
-          line-height: 1.7;
-          max-width: 400px;
-          margin: 0;
+          color: #FFFFFF;
+          font-size: 18px;
+          line-height: 26px;
+          // max-width: 400px;
+          // margin: 50px;
+          margin-left: 190px
         }
 
         /* ── Grid ───────────────────────────────────────── */
@@ -216,14 +221,14 @@ export default function CorePart() {
         }
 
         .hws-card-title {
-          font-size: 1rem;
-          font-weight: 700;
+          font-size: 22px;
+          font-weight: 500;
           margin: 0;
-          line-height: 1.3;
+          line-height: 30px;
         }
 
         .hws-card-desc {
-          font-size: 0.82rem;
+          font-size: 16px;
           line-height: 1.65;
           margin: 0;
         }
@@ -268,21 +273,25 @@ export default function CorePart() {
             {/* Badge */}
             <div className="hws-badge">Core Platform</div>
 
-            {/* Heading row */}
-            <div className="row align-items-start mb-4">
-              <div className="col-lg-5 col-md-6 mb-3 mb-md-0">
-                <h2 className="hws-headline">
-                  How the<br />System Works
-                </h2>
-              </div>
-              <div className="col-lg-5 col-md-6 offset-lg-1">
-                <p className="hws-subtext">
-                  VanShakti operates through a structured system that manages farm
-                  operations, quality, logistics, and market distribution ensuring
-                  smooth execution at every stage of the supply chain.
-                </p>
-              </div>
-            </div>
+           <div className="row align-items-start mb-4">
+
+  {/* LEFT - HEADING */}
+  <div className="col-lg-5 col-md-5">
+    <h2 className="hws-headline">
+      How the<br />System Works
+    </h2>
+  </div>
+
+  {/* RIGHT - SUBTEXT */}
+  <div className="col-lg-7 col-md-7">
+    <p className="hws-subtext">
+      VanShakti operates through a structured system that manages farm
+      operations, quality, logistics, and market distribution ensuring
+      smooth execution at every stage of the supply chain.
+    </p>
+  </div>
+
+</div>
 
             {/* Grid */}
             <div className="hws-grid">

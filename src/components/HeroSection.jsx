@@ -13,7 +13,7 @@ function HeroSection() {
   id="hero"
   style={{
     position: "relative",
-    minHeight: "810px",
+    minHeight: "700px",
     display: "flex",
     flexDirection: "column",
     justifyContent: "flex-end",
@@ -50,8 +50,8 @@ function HeroSection() {
     radial-gradient(
       120% 140% at 100% 60%,
       rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 0.73) 70%,
-      rgba(0, 0, 0, 0.84) 100%
+      rgba(0, 0, 0, 0.57) 70%,
+      rgba(0, 0, 0, 0.56) 100%
     ),
     linear-gradient(
       90deg,
@@ -112,26 +112,27 @@ function HeroSection() {
         .hero-badge {
           display: inline-block;
           font-family:DM Sans;
+          fontStyle: "italic";
           border: 1px solid rgba(255,255,255,0.75);
           color: #ffffff;
-          padding: 10px 24px;
-          border-radius: 40px;
-          font-size: 15px;
+          padding: 8px 16px;
+          border-radius: 16px;
+          font-size: 16px;
           font-weight: 400;
-          margin-bottom: 28px;
+          margin-bottom: 30px;
           // backdrop-filter: blur(8px);
-          background: rgba(255,255,255,0.08);
-          letter-spacing: 0.3px;
+          // background: rgba(255,255,255,0.08);
+          letter-spacing: 0px;
         }
 
         /* ── RESPONSIVE HEADLINES VIA CSS CONTENT ── */
         .hero-heading {
           color: #ffffff;
-          font-size: 60px;
+          font-size: 56px;
           font-weight: 500;
           line-height: 1.08;
-          margin-bottom: 15px;
-          letter-spacing: -1.5px;
+          margin-bottom: 30px;
+          letter-spacing: 0px;
         }
         
         /* Desktop Headline Setup */
@@ -141,19 +142,23 @@ function HeroSection() {
         }
 
         .hero-desc {
-          color: #e8e8e8;
-          font-size: 18px;
-          line-height: 1.75;
+          color: #FFFFFF;
+          font-size: 20px;
+          line-height: 26px;
           max-width: 820px;
-          margin-bottom: 15px;
+          margin-bottom: 60px;
+          font-family: 'DM Sans', sans-serif;
+           font-weight: 500;
+          // letter-spacing: 0;
+          // text-align: justify;
         }
 
         .hero-btn {
-          background: #d8f03d;
+          background: #E7F352;
           color: #111111;
           border: none;
-          border-radius: 50px;
-          padding: 16px 36px;
+          border-radius: 42px;
+          padding: 9px 20px;
           font-size: 16px;
           font-weight: 600; 
           cursor: pointer;
@@ -185,7 +190,7 @@ function HeroSection() {
 
           .hero-heading {
             font-size: 36px;
-            letter-spacing: -0.5px;
+            letter-spacing: 0px;
             line-height: 1.2;
           }
           /* Simplified Headline variation text for Mobile sizes */

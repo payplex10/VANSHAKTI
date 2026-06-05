@@ -222,7 +222,7 @@ function FoodSafety() {
 
         .fs-page-root {
           font-family: 'DM Sans', sans-serif;
-          background-color: #fafafa;
+          background-color: #ffffff;
           overflow-x: hidden;
           width: 100%;
           max-width: 100vw;
@@ -283,7 +283,7 @@ function FoodSafety() {
 
         /* ── 2. COMMITMENT INTRO ── */
         .fs-commit {
-          background: #F5F5F2;
+          background: #ffffff;
           padding: clamp(40px, 6vw, 72px) clamp(24px, 6vw, 100px);
         }
         .fs-commit__inner {
@@ -315,7 +315,7 @@ function FoodSafety() {
         .fs-commit__divider {
           width: 2px;
           min-height: 80px;
-          background: #C9D0C8;
+          background: #F4F4EE;
           flex-shrink: 0;
           margin-top: 4px;
         }
@@ -330,7 +330,7 @@ function FoodSafety() {
 
         /* ── 3. STANDARDS CARDS ── */
         .fs-cards {
-          max-width: 1200px;
+          max-width: 100%;
           margin: 0 auto;
           padding: clamp(32px, 5vw, 60px) clamp(24px, 5vw, 60px);
           background: #F4F4F0;
@@ -340,7 +340,7 @@ function FoodSafety() {
           gap: clamp(16px, 2.5vw, 28px);
         }
         .fs-card {
-          background: #fff;
+          background: #ffffff;
           border-radius: 10px;
           padding: clamp(20px, 3vw, 32px);
           display: flex;
@@ -376,7 +376,7 @@ function FoodSafety() {
         /* ── 4. OPERATIONAL STANDARDS ── */
         .fs-ops {
           padding: clamp(40px, 6vw, 80px) clamp(24px, 6vw, 100px);
-          background: #fafafa;
+          background: #ffffff;
         }
         .fs-ops__inner {
           max-width: 1200px;

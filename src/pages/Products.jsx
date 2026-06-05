@@ -322,7 +322,7 @@ export default function Products() {
           padding: 6px 14px;
           border-radius: 20px;
           font-size: 0.85rem;
-          font-weight: 600;
+          font-weight: 500;
           border: 1px solid #3B3939;
           letter-spacing: 0.5px;
           width: fit-content;
@@ -413,7 +413,7 @@ export default function Products() {
           width: 100%;
           padding: clamp(14px, 2.5vw, 24px);
           color: #fff;
-          font-weight: 600;
+          font-weight: 500;
           font-size: clamp(1rem, 1.8vw, 1.3rem);
           letter-spacing: -0.3px;
           z-index: 2;
@@ -512,7 +512,7 @@ export default function Products() {
         }
         .prod-feat-card__cat {
           font-size: 0.72rem;
-          font-weight: 600;
+          font-weight: 500;
           color: #2c7a4b;
           letter-spacing: 1px;
           margin: 0;
@@ -707,7 +707,7 @@ export default function Products() {
           border: none;
           padding: 14px 36px;
           border-radius: 30px;
-          font-weight: 600;
+          font-weight: 400;
           font-size: clamp(0.9rem, 1.5vw, 1rem);
           cursor: pointer;
           box-shadow: 0 4px 15px rgba(28,90,62,0.3);
