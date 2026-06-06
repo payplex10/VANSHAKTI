@@ -106,7 +106,7 @@ function FooterSection({
   <div
     style={{
       maxWidth: "1380px",
-      height : " 406.86px",
+      // height : " 406.86px",
       margin: "0 auto",
       backgroundColor: "#fff",
       padding: "48px",
@@ -116,15 +116,16 @@ function FooterSection({
   >
     {/* ================= TOP FOOTER ================= */}
     <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        gap: "50.01px",
-        flexWrap: "wrap",
-      }}
-    >
+  className="footer-top"
+  style={{
+    display: "flex",
+    justifyContent: "space-between",
+    gap: "50.01px",
+    flexWrap: "wrap",
+  }}
+>
       {/* ================= BRAND ================= */}
-      <div style={{ maxWidth: "344px", width: "100%" }}>
+      <div className="footer-brand" style={{ maxWidth: "344px", width: "100%" }}>
         <img
           src={Logo}
           alt="Logo"
@@ -142,7 +143,7 @@ function FooterSection({
       </div>
 
       {/* ================= QUICK LINKS ================= */}
-      <div style={{ width: "210px" }}>
+     <div className="footer-column quick-links" style={{ width: "210px" }}>
         <h6 className="footer-heading">Quick links</h6>
         <ul style={{ listStyle: "none", padding: 0 }}>
           {[
@@ -164,7 +165,7 @@ function FooterSection({
       </div>
 
       {/* ================= NAVIGATION ================= */}
-      <div style={{ width: "210px" }}>
+      <div className="footer-column navigation-links" style={{ width: "210px" }}>
         <h6 className="footer-heading">Navigation</h6>
         <ul style={{ listStyle: "none", padding: 0 }}>
           {[
@@ -186,7 +187,7 @@ function FooterSection({
       </div>
 
       {/* ================= SOCIAL ================= */}
-      <div style={{ width: "210px" }}>
+     <div className="footer-column social-links" style={{ width: "210px" }}>
         <h6 className="footer-heading">Social Handle</h6>
         <ul style={{ listStyle: "none", padding: 0 }}>
           {[
@@ -309,42 +310,88 @@ function FooterSection({
   }
 
   /* ================= MOBILE ================= */
- @media (max-width: 768px) {
-  div[style*="display: flex"][style*="flex-wrap"] {
-    flex-direction: column;
-  }
+//  @media (max-width: 768px) {
+//   div[style*="display: flex"][style*="flex-wrap"] {
+//     flex-direction: column;
+//   }
 
-  div[style*="width: 32%"],
-  div[style*="width: 20%"] {
-    width: 100% !important;
-    flex: 100%;
-  }
+//   div[style*="width: 32%"],
+//   div[style*="width: 20%"] {
+//     width: 100% !important;
+//     flex: 100%;
+//   }
 
-  div[style*="width: 45%"] {
-    width: 100% !important;
-    flex: 100%;
+//   div[style*="width: 45%"] {
+//     width: 100% !important;
+//     flex: 100%;
+//     flex-direction: row !important;
+//     gap: 20px;
+//   }
+
+//     div[style*="padding: 60px"] {
+//       padding: 30px !important;
+//     }
+
+//     img {
+//       max-width: 140px;
+//     }
+
+//     .footer-heading {
+//       font-size: 16px !important;
+//     }
+
+//     .footer-link,
+//     .social-link {
+//       font-size: 14px;
+//     }
+//   }
+
+@media (max-width: 768px) {
+
+  .footer-top {
+    display: flex !important;
+    flex-wrap: wrap !important;
     flex-direction: row !important;
-    gap: 20px;
+    gap: 20px !important;
   }
 
-    div[style*="padding: 60px"] {
-      padding: 30px !important;
-    }
-
-    img {
-      max-width: 140px;
-    }
-
-    .footer-heading {
-      font-size: 16px !important;
-    }
-
-    .footer-link,
-    .social-link {
-      font-size: 14px;
-    }
+  /* Brand takes full width */
+  .footer-brand {
+    width: 100% !important;
+    max-width: 100% !important;
   }
 
+  /* Quick Links + Navigation side by side */
+  .quick-links,
+  .navigation-links {
+    width: calc(50% - 10px) !important;
+    flex: none !important;
+  }
+
+  /* Social goes below */
+  .social-links {
+    width: 100% !important;
+    flex: none !important;
+  }
+
+  /* Footer card padding */
+  section > div {
+    padding: 32px !important;
+  }
+
+  img {
+    max-width: 140px;
+  }
+
+  .footer-heading {
+    font-size: 16px !important;
+  }
+
+  .footer-link,
+  .social-link {
+    font-size: 14px;
+  }
+}
   /* ================= SMALL MOBILE ================= */
   @media (max-width: 480px) {
     div[style*="padding: 60px"] {

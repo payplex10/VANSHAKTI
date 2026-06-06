@@ -52,7 +52,7 @@ function Navbar() {
         transform: "translateX(-50%)",
 
         padding: "8px 8px",
-        margin : "8px 8px",
+        // margin : "2px 4px",
        
 
         border: isTransparent

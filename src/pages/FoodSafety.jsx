@@ -82,6 +82,518 @@ function FoodSafety() {
   return (
     <div className="fs-page-root">
 
+      {/* ── GLOBAL STYLES ─────────────────────────────────────────────────── */}
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+        /* ── Base ── */
+        .fs-page-root {
+          font-family: 'DM Sans', sans-serif;
+          background-color: #ffffff;
+          overflow-x: hidden;
+          width: 100%;
+          max-width: 100vw;
+          color: #1a1a1a;
+        }
+
+        /* ─────────────────────────────────────
+           1. HERO
+        ───────────────────────────────────── */
+        .fs-hero {
+          position: relative;
+          background-size: cover;
+          background-position: center;
+          min-height: 680px;
+          display: flex;
+          align-items: flex-end;
+          padding: 80px clamp(24px, 7vw, 120px);
+        }
+        .fs-hero__overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(
+            to top,
+            rgba(0,0,0,0.72) 0%,
+            rgba(0,0,0,0.35) 50%,
+            rgba(0,0,0,0.10) 100%
+          );
+          z-index: 1;
+        }
+        .fs-hero__content {
+          position: relative;
+          z-index: 2;
+          color: #fff;
+          max-width: 640px;
+          display: flex;
+          flex-direction: column;
+          gap: 18px;
+        }
+        .fs-badge {
+          display: inline-block;
+          background: rgba(255,255,255,0.12);
+          border: 1px solid rgba(255,255,255,0.75);
+          backdrop-filter: blur(6px);
+          -webkit-backdrop-filter: blur(6px);
+          color: #fff;
+          font-size: 0.875rem;
+          font-style: italic;
+          font-weight: 400;
+          letter-spacing: 0.02em;
+          padding: 6px 16px;
+          border-radius: 20px;
+          width: fit-content;
+        }
+        .fs-hero__title {
+          font-size: 56px;
+          font-weight: 400;
+          line-height: 1.13;
+          margin: 0;
+        }
+        .fs-hero__sub {
+          font-size: clamp(0.95rem, 2vw, 1.2rem);
+          font-weight: 400;
+          opacity: 0.9;
+          line-height: 1.65;
+          margin: 0;
+          max-width: 580px;
+        }
+
+        /* ─────────────────────────────────────
+           2. COMMITMENT
+        ───────────────────────────────────── */
+        .fs-commit {
+          background: #ffffff;
+          padding: clamp(48px, 6vw, 80px) clamp(24px, 7vw, 100px);
+        }
+        .fs-commit__inner {
+          max-width: 1200px;
+          margin: 0 auto;
+          display: flex;
+          align-items: flex-start;
+          gap: clamp(32px, 5vw, 80px);
+        }
+        .fs-commit__left {
+          flex: 1 1 40%;
+          min-width: 0;
+        }
+        .fs-commit__heading {
+          font-size: clamp(1.6rem, 3.2vw, 2.4rem);
+          font-weight: 400;
+          color: #065532;
+          line-height: 1.25;
+          margin: 0;
+        }
+        .fs-commit__right {
+          flex: 1 1 55%;
+          min-width: 0;
+          display: flex;
+          align-items: flex-start;
+          gap: 24px;
+        }
+        .fs-commit__divider {
+          width: 2px;
+          min-height: 80px;
+          align-self: stretch;
+          background: #E8E8E0;
+          flex-shrink: 0;
+        }
+        .fs-commit__body {
+          font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+          color: #576157;
+          line-height: 1.75;
+          font-weight: 400;
+          margin: 0;
+        }
+
+        /* ─────────────────────────────────────
+           3. STANDARDS CARDS
+        ───────────────────────────────────── */
+        .fs-cards-section {
+          background: #F4F4F0;
+          padding: clamp(36px, 5vw, 64px) clamp(24px, 7vw, 100px);
+        }
+        .fs-cards-grid {
+          max-width: 1200px;
+          margin: 0 auto;
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: clamp(16px, 2.5vw, 28px);
+        }
+        .fs-card {
+          background: #ffffff;
+          border-radius: 12px;
+          padding: clamp(24px, 3vw, 36px);
+          display: flex;
+          flex-direction: column;
+          gap: 14px;
+        }
+        .fs-card__icon {
+          width: 40px;
+          height: 40px;
+          flex-shrink: 0;
+        }
+        .fs-card__icon img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          display: block;
+        }
+        .fs-card__title {
+          font-size: clamp(1.2rem, 2.2vw, 1.85rem);
+          font-weight: 400;
+          color: #0d5c3a;
+          line-height: 1.3;
+          margin: 0;
+        }
+        .fs-card__desc {
+          font-size: clamp(0.875rem, 1.4vw, 1rem);
+          color: #576157;
+          line-height: 1.65;
+          font-weight: 400;
+          margin: 0;
+        }
+
+        /* ─────────────────────────────────────
+           4. OPERATIONAL STANDARDS
+        ───────────────────────────────────── */
+        .fs-ops {
+          padding: clamp(48px, 6vw, 88px) clamp(24px, 7vw, 100px);
+          background: #ffffff;
+        }
+        .fs-ops__inner {
+          max-width: 1200px;
+          margin: 0 auto;
+          display: flex;
+          gap: clamp(36px, 6vw, 96px);
+          align-items: flex-start;
+        }
+        .fs-ops__left {
+          flex: 0 0 clamp(180px, 26%, 300px);
+          position: sticky;
+          top: 40px;
+        }
+        .fs-ops__heading {
+          font-size: clamp(1.4rem, 2.5vw, 2rem);
+          font-weight: 400;
+          color: #0D5C46;
+          margin: 0 0 12px;
+          line-height: 1.25;
+        }
+        .fs-ops__sub {
+          color: #6c757d;
+          font-size: clamp(0.875rem, 1.4vw, 1rem);
+          margin: 0;
+          line-height: 1.65;
+        }
+        .fs-ops__right {
+          flex: 1;
+          min-width: 0;
+        }
+        .fs-ops__item {
+          display: flex;
+          align-items: flex-start;
+          gap: 20px;
+          padding: clamp(18px, 2.5vw, 26px) 0;
+          border-bottom: 1px solid #EBEBEB;
+        }
+        .fs-ops__item:first-child { padding-top: 0; }
+        .fs-ops__item:last-child { border-bottom: none; }
+        .fs-ops__num {
+          font-size: 0.9rem;
+          font-weight: 700;
+          color: #0D5C46;
+          min-width: 28px;
+          flex-shrink: 0;
+          line-height: 1.6;
+          opacity: 0.7;
+        }
+        .fs-ops__item-title {
+          font-size: clamp(1rem, 1.7vw, 1.15rem);
+          font-weight: 600;
+          color: #1a1a1a;
+          margin-bottom: 5px;
+          line-height: 1.35;
+        }
+        .fs-ops__item-desc {
+          font-size: clamp(0.83rem, 1.3vw, 0.93rem);
+          color: #6c757d;
+          line-height: 1.65;
+          margin: 0;
+        }
+
+        /* ─────────────────────────────────────
+           5. QUALITY BANNER
+        ───────────────────────────────────── */
+        .fs-banner-wrapper {
+          padding: 0 clamp(24px, 7vw, 100px) clamp(48px, 6vw, 80px);
+          max-width: 1400px;
+          margin: 0 auto;
+        }
+        .fs-banner {
+          position: relative;
+          background-size: cover;
+          background-position: center;
+          width: 100%;
+          aspect-ratio: 16 / 5;
+          min-height: 200px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          border-radius: 16px;
+          overflow: hidden;
+        }
+        .fs-banner__overlay {
+          position: absolute;
+          inset: 0;
+          background: rgba(0,0,0,0.45);
+          z-index: 1;
+        }
+        .fs-banner__text {
+          position: relative;
+          z-index: 2;
+          color: #fff;
+          font-size: clamp(1.2rem, 3.5vw, 2.25rem);
+          font-weight: 500;
+          line-height: 1.35;
+          padding: 0 clamp(20px, 5vw, 60px);
+        }
+
+        /* ─────────────────────────────────────
+           6. CERTIFICATIONS
+        ───────────────────────────────────── */
+        .fs-certs {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: clamp(40px, 6vw, 80px) clamp(24px, 5vw, 60px);
+          text-align: center;
+        }
+        .fs-certs__heading {
+          font-size: clamp(1.4rem, 2.8vw, 2rem);
+          font-weight: 400;
+          color: #0D5C46;
+          margin: 0 0 16px;
+          line-height: 1.25;
+        }
+        .fs-certs__sub {
+          color: #6c757d;
+          font-size: clamp(0.875rem, 1.5vw, 1rem);
+          max-width: 560px;
+          margin: 0 auto clamp(36px, 5vw, 56px);
+          line-height: 1.7;
+        }
+        .fs-certs__grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: clamp(16px, 2.5vw, 28px);
+        }
+        .fs-cert-card {
+          background: #fff;
+          border: 1px solid #EFEFEF;
+          border-radius: 14px;
+          padding: clamp(28px, 3.5vw, 44px) clamp(16px, 2vw, 28px);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 12px;
+          transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1),
+                      box-shadow 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .fs-cert-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 16px 32px rgba(0,0,0,0.07);
+        }
+        .fs-cert-card__logo {
+          width: clamp(64px, 9vw, 88px);
+          height: clamp(64px, 9vw, 88px);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+        }
+        .fs-cert-card__logo img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          display: block;
+        }
+        .fs-cert-card__no-logo {
+          font-size: 0.75rem;
+          color: #ccc;
+        }
+        .fs-cert-card__title {
+          font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+          font-weight: 700;
+          color: #0D5C46;
+          margin: 0;
+        }
+        .fs-cert-card__sub {
+          font-size: clamp(0.72rem, 1.1vw, 0.8rem);
+          color: #6c757d;
+          line-height: 1.55;
+          text-align: center;
+          margin: 0;
+        }
+
+        /* ─────────────────────────────────────
+           ANIMATIONS
+        ───────────────────────────────────── */
+        .custom-reveal-container .custom-reveal-element {
+          opacity: 0;
+          transform: translateY(-28px);
+          transition:
+            opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+            transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+          will-change: transform, opacity;
+        }
+        .custom-reveal-container.reveal-active .custom-reveal-element {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        .delay-1 { transition-delay: 100ms !important; }
+        .delay-2 { transition-delay: 250ms !important; }
+        .delay-3 { transition-delay: 400ms !important; }
+
+        .hover-lift {
+          transition:
+            transform 0.35s cubic-bezier(0.25, 1, 0.5, 1),
+            box-shadow 0.35s cubic-bezier(0.25, 1, 0.5, 1) !important;
+        }
+        .hover-lift:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 16px 32px rgba(0,0,0,0.07) !important;
+        }
+
+        /* ─────────────────────────────────────
+           RESPONSIVE — TABLET (≤ 1024px)
+        ───────────────────────────────────── */
+        @media (max-width: 1024px) {
+          .fs-hero { min-height: 560px; }
+          .fs-ops__left { position: static; flex: 0 0 100%; }
+          .fs-ops__right { flex: 0 0 100%; }
+          .fs-ops__inner { flex-wrap: wrap; }
+        }
+
+        /* ─────────────────────────────────────
+           RESPONSIVE — MOBILE (≤ 768px)
+        ───────────────────────────────────── */
+        @media (max-width: 768px) {
+
+          /* Hero */
+          .fs-hero {
+            min-height: 520px;
+            padding: 56px 20px 48px;
+            align-items: flex-end;
+          }
+          .fs-hero__title { line-height: 1.18; }
+          .fs-hero__sub { font-size: 0.95rem; }
+
+          /* Commitment */
+          .fs-commit { padding: 44px 20px; }
+          .fs-commit__inner {
+            flex-direction: column;
+            gap: 24px;
+          }
+          .fs-commit__left,
+          .fs-commit__right {
+            flex: none;
+            width: 100%;
+          }
+          .fs-commit__divider { display: none; }
+          .fs-commit__right { gap: 0; }
+
+          /* Cards */
+          .fs-cards-section { padding: 36px 20px; }
+          .fs-cards-grid {
+            grid-template-columns: 1fr;
+            gap: 14px;
+          }
+          .fs-card { padding: 22px 20px; }
+
+          /* Ops */
+          .fs-ops { padding: 44px 20px; }
+          .fs-ops__inner {
+            flex-direction: column;
+            gap: 28px;
+          }
+          .fs-ops__left { flex: none; width: 100%; }
+
+          /* Banner */
+          .fs-banner-wrapper { padding: 0 20px 44px; }
+          .fs-banner {
+            aspect-ratio: 16 / 7;
+            min-height: 180px;
+            border-radius: 12px;
+          }
+
+          /* Certs */
+          .fs-certs { padding: 44px 20px; }
+          .fs-certs__grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+          }
+          .fs-cert-card {
+            padding: 24px 16px;
+          }
+        }
+
+        /* ─────────────────────────────────────
+           RESPONSIVE — SMALL MOBILE (≤ 480px)
+        ───────────────────────────────────── */
+        @media (max-width: 480px) {
+
+          /* Hero */
+          .fs-hero {
+            min-height: 440px;
+            padding: 48px 16px 40px;
+          }
+
+          /* Cards — single column already, just tighten */
+          .fs-cards-section { padding: 28px 16px; }
+          .fs-card { padding: 20px 16px; gap: 10px; }
+
+          /* Ops */
+          .fs-ops { padding: 36px 16px; }
+          .fs-ops__item { gap: 14px; }
+
+          /* Banner */
+          .fs-banner-wrapper { padding: 0 16px 36px; }
+          .fs-banner { aspect-ratio: 16 / 8; }
+
+          /* Certs — go single column */
+          .fs-certs { padding: 36px 16px; }
+          .fs-certs__grid {
+            grid-template-columns: 1fr;
+            gap: 12px;
+          }
+          .fs-cert-card {
+            flex-direction: row;
+            text-align: left;
+            align-items: center;
+            gap: 16px;
+            padding: 20px 16px;
+          }
+          .fs-cert-card__logo {
+            width: 52px;
+            height: 52px;
+            flex-shrink: 0;
+          }
+          .fs-cert-card__sub { text-align: left; }
+        }
+
+        /* ─────────────────────────────────────
+           RESPONSIVE — VERY SMALL (≤ 360px)
+        ───────────────────────────────────── */
+        @media (max-width: 360px) {
+          .fs-commit,
+          .fs-ops,
+          .fs-certs,
+          .fs-cards-section,
+          .fs-banner-wrapper { padding-left: 14px; padding-right: 14px; }
+          .fs-hero { padding-left: 14px; padding-right: 14px; }
+        }
+      `}</style>
+
       {/* ── 1. HERO ───────────────────────────────────────────────────────── */}
       <section
         ref={heroRef}
@@ -90,7 +602,7 @@ function FoodSafety() {
       >
         <div className="fs-hero__overlay" />
         <div className="fs-hero__content">
-          <div className="fs-badge custom-reveal-element delay-1">Food Safety & Quality</div>
+          <div className="fs-badge custom-reveal-element delay-1">Food Safety &amp; Quality</div>
           <h1 className="fs-hero__title custom-reveal-element delay-2">
             Built on Quality,<br />Safety and Trust
           </h1>
@@ -126,21 +638,23 @@ function FoodSafety() {
       {/* ── 3. STANDARDS CARDS ────────────────────────────────────────────── */}
       <div
         ref={cardsRef}
-        className={`fs-cards custom-reveal-container ${cardsVisible ? "reveal-active" : ""}`}
+        className={`fs-cards-section custom-reveal-container ${cardsVisible ? "reveal-active" : ""}`}
       >
-        {standards.map((item, idx) => (
-          <div
-            key={idx}
-            className="fs-card custom-reveal-element hover-lift"
-            style={{ transitionDelay: `${idx * 120}ms` }}
-          >
-            <div className="fs-card__icon">
-              <img src={item.icon} alt={item.title} />
+        <div className="fs-cards-grid">
+          {standards.map((item, idx) => (
+            <div
+              key={idx}
+              className="fs-card custom-reveal-element hover-lift"
+              style={{ transitionDelay: `${idx * 120}ms` }}
+            >
+              <div className="fs-card__icon">
+                <img src={item.icon} alt={item.title} />
+              </div>
+              <div className="fs-card__title">{item.title}</div>
+              <p className="fs-card__desc">{item.desc}</p>
             </div>
-            <div className="fs-card__title">{item.title}</div>
-            <p className="fs-card__desc">{item.desc}</p>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
       {/* ── 4. OPERATIONAL STANDARDS ──────────────────────────────────────── */}
@@ -172,16 +686,20 @@ function FoodSafety() {
       </section>
 
       {/* ── 5. QUALITY BANNER ─────────────────────────────────────────────── */}
-      <section
+      <div
         ref={bannerRef}
-        className={`fs-banner custom-reveal-container ${bannerVisible ? "reveal-active" : ""}`}
-        style={{ backgroundImage: `url(${QualityBanner})` }}
+        className={`fs-banner-wrapper custom-reveal-container ${bannerVisible ? "reveal-active" : ""}`}
       >
-        <div className="fs-banner__overlay" />
-        <div className="fs-banner__text custom-reveal-element delay-1">
-          Maintaining quality at every Stage
+        <div
+          className="fs-banner custom-reveal-element delay-1"
+          style={{ backgroundImage: `url(${QualityBanner})` }}
+        >
+          <div className="fs-banner__overlay" />
+          <div className="fs-banner__text">
+            Maintaining quality at every Stage
+          </div>
         </div>
-      </section>
+      </div>
 
       {/* ── 6. CERTIFICATIONS ─────────────────────────────────────────────── */}
       <section
@@ -199,7 +717,7 @@ function FoodSafety() {
           {certs.map((cert, idx) => (
             <div
               key={idx}
-              className="fs-cert-card custom-reveal-element hover-lift"
+              className="fs-cert-card custom-reveal-element"
               style={{ transitionDelay: `${idx * 120}ms` }}
             >
               <div className="fs-cert-card__logo">
@@ -215,499 +733,6 @@ function FoodSafety() {
         </div>
       </section>
 
-      {/* ── GLOBAL STYLES ─────────────────────────────────────────────────── */}
-      <style>{`
-        /* ── Base reset ── */
-        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
-
-        .fs-page-root {
-          font-family: 'DM Sans', sans-serif;
-          background-color: #ffffff;
-          overflow-x: hidden;
-          width: 100%;
-          max-width: 100vw;
-          color: #1a1a1a;
-        }
-
-        /* ── 1. HERO ── */
-        .fs-hero {
-          position: relative;
-          background-size: cover;
-          background-position: center;
-          min-height: 700px;
-          display: flex;
-          align-items: flex-end;
-          padding: 80px clamp(24px, 6vw, 120px) 80px;
-        }
-        .fs-hero__overlay {
-          position: absolute;
-          inset: 0;
-          background: rgba(0,0,0,0.42);
-          z-index: 1;
-        }
-        .fs-hero__content {
-          position: relative;
-          z-index: 2;
-          color: #fff;
-          max-width: 680px;
-          display: flex;
-          flex-direction: column;
-          gap: 20px;
-        }
-        .fs-badge {
-          display: inline-block;
-          background: rgba(255,255,255,0.12);
-          border: 1px solid rgba(255,255,255,0.3);
-          backdrop-filter: blur(6px);
-          color: #fff;
-          font-size: 0.875rem;
-          font-weight: 500;
-          letter-spacing: 0.04em;
-          padding: 6px 14px;
-          border-radius: 20px;
-          width: fit-content;
-        }
-        .fs-hero__title {
-          font-size: clamp(2rem, 5vw, 3.5rem);
-          font-weight: 400;
-          line-height: 1.18;
-          margin: 0;
-        }
-        .fs-hero__sub {
-          font-size: clamp(0.95rem, 2vw, 1.15rem);
-          opacity: 0.88;
-          line-height: 1.65;
-          margin: 0;
-          max-width: 520px;
-        }
-
-        /* ── 2. COMMITMENT INTRO ── */
-        .fs-commit {
-          background: #ffffff;
-          padding: clamp(40px, 6vw, 72px) clamp(24px, 6vw, 100px);
-        }
-        .fs-commit__inner {
-          max-width: 1200px;
-          margin: 0 auto;
-          display: flex;
-          align-items: flex-start;
-          gap: clamp(32px, 5vw, 80px);
-          flex-wrap: wrap;
-        }
-        .fs-commit__left {
-          flex: 1;
-          min-width: 260px;
-        }
-        .fs-commit__heading {
-          font-size: clamp(1.75rem, 3.5vw, 3rem);
-          font-weight: 400;
-          color: #0D5C46;
-          line-height: 1.22;
-          margin: 0;
-        }
-        .fs-commit__right {
-          flex: 1;
-          min-width: 260px;
-          display: flex;
-          align-items: flex-start;
-          gap: 24px;
-        }
-        .fs-commit__divider {
-          width: 2px;
-          min-height: 80px;
-          background: #F4F4EE;
-          flex-shrink: 0;
-          margin-top: 4px;
-        }
-        .fs-commit__body {
-          font-size: clamp(0.875rem, 1.5vw, 1rem);
-          color: #5A5A5A;
-          line-height: 1.7;
-          font-weight: 300;
-          margin: 0;
-          max-width: 480px;
-        }
-
-        /* ── 3. STANDARDS CARDS ── */
-        .fs-cards {
-          max-width: 100%;
-          margin: 0 auto;
-          padding: clamp(32px, 5vw, 60px) clamp(24px, 5vw, 60px);
-          background: #F4F4F0;
-          display: grid;
-          /* 2-col on desktop, 1-col on mobile */
-          grid-template-columns: repeat(2, 1fr);
-          gap: clamp(16px, 2.5vw, 28px);
-        }
-        .fs-card {
-          background: #ffffff;
-          border-radius: 10px;
-          padding: clamp(20px, 3vw, 32px);
-          display: flex;
-          flex-direction: column;
-          gap: 14px;
-          /* Keep a natural aspect ratio — no fixed aspect-ratio forcing collapse on mobile */
-          min-height: 200px;
-        }
-        .fs-card__icon {
-          width: 36px;
-          height: 36px;
-          flex-shrink: 0;
-        }
-        .fs-card__icon img {
-          width: 100%;
-          height: 100%;
-          object-fit: contain;
-        }
-        .fs-card__title {
-          font-size: clamp(1.1rem, 2vw, 1.55rem);
-          font-weight: 500;
-          color: #0d5c3a;
-          line-height: 1.25;
-        }
-        .fs-card__desc {
-          font-size: clamp(0.85rem, 1.4vw, 0.95rem);
-          color: #555;
-          line-height: 1.65;
-          font-weight: 400;
-          margin: 0;
-        }
-
-        /* ── 4. OPERATIONAL STANDARDS ── */
-        .fs-ops {
-          padding: clamp(40px, 6vw, 80px) clamp(24px, 6vw, 100px);
-          background: #ffffff;
-        }
-        .fs-ops__inner {
-          max-width: 1200px;
-          margin: 0 auto;
-          display: flex;
-          gap: clamp(32px, 5vw, 80px);
-          flex-wrap: wrap;
-          align-items: flex-start;
-        }
-        .fs-ops__left {
-          flex: 0 0 clamp(200px, 28%, 340px);
-          position: sticky;
-          top: 40px;
-        }
-        .fs-ops__heading {
-          font-size: clamp(1.5rem, 2.8vw, 2rem);
-          font-weight: 400;
-          color: #0D5C46;
-          margin: 0 0 12px;
-          line-height: 1.25;
-        }
-        .fs-ops__sub {
-          color: #6c757d;
-          font-size: clamp(0.875rem, 1.5vw, 1rem);
-          margin: 0;
-          line-height: 1.6;
-        }
-        .fs-ops__right {
-          flex: 1;
-          min-width: 260px;
-        }
-        .fs-ops__item {
-          display: flex;
-          align-items: flex-start;
-          gap: 20px;
-          padding: clamp(16px, 2.5vw, 24px) 0;
-          border-bottom: 1px solid #e8e8e8;
-        }
-        .fs-ops__item:first-child { padding-top: 0; }
-        .fs-ops__num {
-          font-size: 1.1rem;
-          font-weight: 700;
-          color: #0D5C46;
-          min-width: 32px;
-          flex-shrink: 0;
-          line-height: 1.4;
-        }
-        .fs-ops__item-title {
-          font-size: clamp(1rem, 1.8vw, 1.2rem);
-          font-weight: 600;
-          color: #1a1a1a;
-          margin-bottom: 6px;
-          line-height: 1.3;
-        }
-        .fs-ops__item-desc {
-          font-size: clamp(0.85rem, 1.4vw, 0.95rem);
-          color: #6c757d;
-          line-height: 1.6;
-        }
-
-        /* ── 5. QUALITY BANNER ── */
-        .fs-banner {
-          position: relative;
-          background-size: cover;
-          background-position: center;
-          /* aspect ratio approach: 16/5 on desktop, taller on mobile */
-          aspect-ratio: 16 / 5;
-          min-height: 240px;
-          max-height: 420px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          text-align: center;
-          max-width: 1200px;
-          margin: 0 auto clamp(40px, 6vw, 80px);
-          border-radius: 14px;
-          overflow: hidden;
-        }
-        .fs-banner__overlay {
-          position: absolute;
-          inset: 0;
-          background: rgba(0,0,0,0.45);
-          z-index: 1;
-        }
-        .fs-banner__text {
-          position: relative;
-          z-index: 2;
-          color: #fff;
-          font-size: clamp(1.25rem, 3.5vw, 2.25rem);
-          font-weight: 500;
-          line-height: 1.3;
-          padding: 0 clamp(20px, 5vw, 60px);
-        }
-
-        /* ── 6. CERTIFICATIONS ── */
-        .fs-certs {
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: clamp(40px, 6vw, 80px) clamp(24px, 5vw, 60px);
-          text-align: center;
-        }
-        .fs-certs__heading {
-          font-size: clamp(1.4rem, 2.8vw, 2rem);
-          font-weight: 400;
-          color: #0D5C46;
-          margin: 0 0 16px;
-        }
-        .fs-certs__sub {
-          color: #6c757d;
-          font-size: clamp(0.875rem, 1.5vw, 1rem);
-          max-width: 520px;
-          margin: 0 auto clamp(32px, 5vw, 56px);
-          line-height: 1.65;
-        }
-        .fs-certs__grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: clamp(16px, 2.5vw, 28px);
-        }
-        .fs-cert-card {
-          background: #fff;
-          border: 1px solid #efefef;
-          border-radius: 12px;
-          padding: clamp(24px, 3vw, 40px) clamp(16px, 2vw, 28px);
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 14px;
-          /* Use aspect-ratio to keep cards consistently proportioned */
-          aspect-ratio: 3 / 4;
-          justify-content: center;
-        }
-        .fs-cert-card__logo {
-          width: clamp(60px, 10vw, 90px);
-          height: clamp(60px, 10vw, 90px);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-        .fs-cert-card__logo img {
-          width: 100%;
-          height: 100%;
-          object-fit: contain;
-        }
-        .fs-cert-card__no-logo {
-          font-size: 0.75rem;
-          color: #ccc;
-        }
-        .fs-cert-card__title {
-          font-size: clamp(0.95rem, 1.6vw, 1.1rem);
-          font-weight: 700;
-          color: #0D5C46;
-        }
-        .fs-cert-card__sub {
-          font-size: clamp(0.75rem, 1.2vw, 0.82rem);
-          color: #6c757d;
-          line-height: 1.5;
-          text-align: center;
-        }
-
-        /* ── ANIMATIONS ── */
-        .custom-reveal-container .custom-reveal-element {
-          opacity: 0;
-          transform: translateY(-30px);
-          transition:
-            opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-            transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
-          will-change: transform, opacity;
-        }
-        .custom-reveal-container.reveal-active .custom-reveal-element {
-          opacity: 1;
-          transform: translateY(0);
-        }
-        .delay-1 { transition-delay: 100ms !important; }
-        .delay-2 { transition-delay: 250ms !important; }
-        .delay-3 { transition-delay: 400ms !important; }
-
-        /* ── HOVER LIFT ── */
-        .hover-lift {
-          transition:
-            transform 0.35s cubic-bezier(0.25, 1, 0.5, 1),
-            box-shadow 0.35s cubic-bezier(0.25, 1, 0.5, 1) !important;
-        }
-        .hover-lift:hover {
-          transform: translateY(-6px);
-          box-shadow: 0 18px 36px rgba(0,0,0,0.08) !important;
-        }
-
-        /* ── MEDIA QUERIES ── */
-
-        /* Tablet: ≤ 1024px */
-        @media (max-width: 1024px) {
-          .fs-hero {
-            min-height: 560px;
-            padding: 60px 40px 60px;
-          }
-          .fs-commit__inner {
-            gap: 40px;
-          }
-          .fs-ops__left {
-            position: static; /* un-sticky on smaller screens */
-            flex: 0 0 100%;
-          }
-          .fs-ops__right {
-            flex: 0 0 100%;
-          }
-          .fs-certs__grid {
-            grid-template-columns: repeat(3, 1fr);
-          }
-        }
-
-        /* Large Mobile / Small Tablet: ≤ 768px */
-        @media (max-width: 768px) {
-          .fs-hero {
-            min-height: 480px;
-            padding: 48px 24px 48px;
-            align-items: flex-end;
-          }
-          .fs-hero__title {
-            font-size: clamp(1.6rem, 7vw, 2.4rem);
-          }
-          .fs-commit {
-            padding: 40px 24px;
-          }
-          .fs-commit__inner {
-            flex-direction: column;
-            gap: 28px;
-          }
-          .fs-commit__left,
-          .fs-commit__right {
-            min-width: 0;
-            flex: none;
-            width: 100%;
-          }
-          .fs-commit__divider {
-            /* on mobile change to a top border instead of left border */
-            display: none;
-          }
-          .fs-cards {
-            grid-template-columns: 1fr;
-            padding: 28px 20px;
-            gap: 16px;
-          }
-          .fs-card {
-            min-height: auto;
-          }
-          .fs-ops {
-            padding: 40px 24px;
-          }
-          .fs-ops__inner {
-            flex-direction: column;
-            gap: 28px;
-          }
-          .fs-banner {
-            aspect-ratio: 16 / 7;
-            min-height: 180px;
-            border-radius: 10px;
-            margin-bottom: 40px;
-          }
-          .fs-banner__text {
-            font-size: clamp(1.1rem, 5vw, 1.6rem);
-          }
-          .fs-certs {
-            padding: 40px 20px;
-          }
-          .fs-certs__grid {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-          }
-          .fs-cert-card {
-            aspect-ratio: auto;
-            padding: 24px 16px;
-            min-height: 200px;
-          }
-        }
-
-        /* Mobile: ≤ 480px */
-        @media (max-width: 480px) {
-          .fs-hero {
-            min-height: 380px;
-            padding: 36px 20px 36px;
-          }
-          .fs-hero__title {
-            font-size: clamp(1.4rem, 8vw, 2rem);
-          }
-          .fs-hero__sub {
-            font-size: 0.9rem;
-          }
-          .fs-commit__heading {
-            font-size: 1.6rem;
-          }
-          .fs-cards {
-            grid-template-columns: 1fr;
-            padding: 20px 16px;
-          }
-          .fs-card__title {
-            font-size: 1.1rem;
-          }
-          .fs-ops__heading {
-            font-size: 1.4rem;
-          }
-          .fs-certs__grid {
-            grid-template-columns: 1fr;
-          }
-          .fs-cert-card {
-            aspect-ratio: auto;
-            min-height: 160px;
-            padding: 20px;
-          }
-          .fs-banner {
-            aspect-ratio: 16 / 9;
-          }
-        }
-
-        /* Very small: ≤ 360px */
-        @media (max-width: 360px) {
-          .fs-hero {
-            min-height: 320px;
-            padding: 28px 16px;
-          }
-          .fs-commit,
-          .fs-ops,
-          .fs-certs {
-            padding-left: 16px;
-            padding-right: 16px;
-          }
-          .fs-cards {
-            padding: 16px;
-          }
-        }
-      `}</style>
     </div>
   );
 }
