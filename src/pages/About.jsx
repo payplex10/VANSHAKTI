@@ -120,18 +120,106 @@ const About = () => {
         @media (max-width: 768px) { .vs-beliefs__grid { grid-template-columns: 1fr; } }
         @media (min-width: 481px) and (max-width: 768px) { .vs-beliefs__grid { grid-template-columns: 1fr 1fr; } }
 
-        .vs-connections { position: relative; width: 100%; height: clamp(260px, 35vw, 440px); margin: clamp(16px, 3vw, 24px) 0; overflow: hidden; }
-        .vs-connections img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .vs-connections__overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.42); }
-        .vs-connections__text { position: absolute; top: 50%; left: clamp(40px, 6vw, 80px); transform: translateY(-50%); max-width: clamp(300px, 45vw, 640px); color: #fff; }
-        .vs-connections__text h2 { font-size: 56px; font-weight: 400; line-height: 1.35; font-family: 'DM Sans', sans-serif; margin: 0; }
-        @media (max-width: 1024px) { .vs-connections__text { left: clamp(24px, 5vw, 60px); max-width: 60%; } .vs-connections__text h2 { font-size: clamp(1.3rem, 3.2vw, 2.2rem); } }
-        @media (max-width: 768px) { .vs-connections { height: 300px; } .vs-connections img { object-position: right center; } .vs-connections__text { text-align: center; padding: 0 16px; } .vs-connections__text h2 { font-size: clamp(20px, 6vw, 32px); } }
-        @media (max-width: 480px) { .vs-connections__text h2 { font-size: 1.2rem; line-height: 1.3; } }
+        .vs-connections {
+    position: relative;
+    width: 100%;
+    min-width:1440px;
+    min-height: 420px;
+    overflow: hidden;
+    border-radius: 0;
+}
 
+.vs-connections img {
+    width: 100%;
+    height: 502px;
+    min-height: 420px;
+    object-fit: cover;
+    display: block;
+}
+
+.vs-connections__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+}
+
+.vs-connections__text {
+    position: absolute;
+    top: 50%;
+    left: 8%;
+    transform: translateY(-50%);
+    z-index: 2;
+    max-width: 500px;
+}
+
+.vs-connections__text h2 {
+    margin: 0;
+    color: #fff;
+    font-family: "DM Sans", sans-serif;
+    font-size: 3.5rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+/* Large Laptop */
+@media (max-width: 1200px) {
+    .vs-connections {
+        min-height: 380px;
+    }
+
+    .vs-connections__text h2 {
+        font-size: 3rem;
+    }
+}
+
+/* Tablet */
+@media (max-width: 992px) {
+    .vs-connections {
+        min-height: 320px;
+    }
+
+    .vs-connections__text {
+        left: 6%;
+        max-width: 400px;
+    }
+
+    .vs-connections__text h2 {
+        font-size: 2.4rem;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .vs-connections {
+        min-height: 280px;
+    }
+
+    .vs-connections__text {
+        left: 50%;
+        width: 90%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
+    .vs-connections__text h2 {
+        font-size: 2rem;
+        line-height: 1.3;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+    .vs-connections {
+        min-height: 240px;
+    }
+
+    .vs-connections__text h2 {
+        font-size: 1.5rem;
+    }
+}
         .vs-agri { background: #fff;  padding: clamp(16px, 3vw, 40px) 0; width: 100%; overflow: hidden; }
-        .vs-agri__inner { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(16px, 3vw, 40px); align-items: start; }
-        .vs-agri__img { width: 100%; max-width: 500px; border-radius: 12px; object-fit: cover; display: block; }
+        .vs-agri__inner { max-width: 1200px; margin: 0 auto; padding: 0 30px; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(16px, 3vw, 40px); align-items: start; }
+        .vs-agri__img { width: 100%; max-width: 622px; border-radius: 12px; object-fit: cover; display: block; }
         .vs-agri__h2 { font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 400; line-height: 1.2; color: #1F1F1F;margin: 0 0 clamp(8px, 1.5vw, 32px) 0; font-family: 'DM Sans', sans-serif; }
         @media (max-width: 992px) { .vs-agri__inner { grid-template-columns: 1fr; } .vs-agri__img { max-width: 100%; margin-bottom: 30px; } }
         @media (max-width: 576px) { .vs-agri__inner { padding: 0 16px; gap: 24px; } .vs-agri__h2 { font-size: 1.5rem; } }

@@ -162,15 +162,15 @@ const Sustainability = () => {
           padding: 80px 0 60px;
         }
         .sus-generation-title {
-          font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+          font-size: 40px;
           font-weight: 400;
           color: #065532;
           line-height: 1.25;
           margin-bottom: 20px;
         }
         .sus-generation-title-underline {
-          width: 48px;
-          height: 3px;
+          width: 150px;
+          height: 2px;
           background: #065532;
           margin-bottom: 20px;
           border-radius: 2px;
@@ -178,7 +178,7 @@ const Sustainability = () => {
         .sus-generation-desc {
           line-height: 1.75;
           color: #4a4a4a;
-          font-size: 1.04rem;
+          font-size: 20px;
         }
         .sus-generation-img {
           border-radius: 18px;
@@ -276,11 +276,10 @@ const Sustainability = () => {
           padding: 0 20px;
         }
         .sus-quote-text {
-          font-weight: 400;
-          font-size: 56px;
-          line-height: 64px;
-          letter-spacing: 0;
-          justify-content: center;
+          font-weight: 500;
+          font-size: clamp(1.6rem, 4vw, 2.6rem);
+          line-height: 1.35;
+          letter-spacing: 0.01em;
           text-shadow: 0px 3px 16px rgba(0,0,0,0.5);
         }
 
@@ -300,28 +299,27 @@ const Sustainability = () => {
           height: auto;
           aspect-ratio: 4 / 3;
           object-fit: cover;
-          border-radius: 8px;
+          border-radius: 16px;
           display: block;
           box-shadow: 0 6px 24px rgba(0,0,0,0.10);
         }
         .sus-practice-subtitle {
-          color: #006B33;
+          color:#006B33;
           font-weight: 600;
-          letter-spacing:0;
-          font-size: 16px;
+          letter-spacing: 0;
+          font-size: 16pxs;
           text-transform: uppercase;
           margin-bottom: 10px;
         }
         .sus-practice-title {
           font-weight: 400;
-          font-size: 40px ;
+          font-size: 40px;
           color: #191C1A;
           margin-bottom: 16px;
-          line-height: 48pxs;
+          line-height: 48px;
         }
         .sus-practice-desc {
-        font-weight: 400;
-          line-height: 32px;
+          line-height: 1.75;
           color: #000000;
           font-size: 24px;
         }
@@ -409,7 +407,7 @@ const Sustainability = () => {
             aspect-ratio: 16 / 7;
           }
           .sus-quote-text {
-            font-size: 56px;
+            font-size: 1.4rem;
           }
 
           .sus-practice-img {
@@ -473,8 +471,9 @@ const Sustainability = () => {
       >
         <div className="row align-items-center g-4 g-lg-5">
           <div className="col-md-6 order-md-1 order-2 sus-reveal-element delay-1">
-            <div className="sus-generation-title-underline" />
+            
             <div className="sus-generation-title">Building for Future Generations</div>
+            <div className="sus-generation-title-underline" />
             <div className="sus-generation-desc">
               Sustainability is not just about production—it is about creating systems that support healthier soil, efficient resource use, and long-term environmental balance. At VanShakti, we integrate ecological wisdom with precision technology to ensure our footprint is as gentle as it is effective.
             </div>
@@ -522,17 +521,17 @@ const Sustainability = () => {
       <div 
               ref={quoteRef}
               className={`sus-reveal-container ${quoteVisible ? "sus-active" : ""}`}
-              style={{ position: "relative", textAlign: "center", color: "white", height: "400px", maxWidth: "100%", margin: "60px 0", overflow: "hidden" }}
+              style={{ position: "relative", textAlign: "center", color: "white", height: "400px", width: "100%", margin: "60px 0", overflow: "hidden" }}
             >
               <img 
                 src={SustainabilityQuoteImg} 
                 alt="sustainability quote" 
-                style={{ width: "100%", maxWidth: "1200px", height: "100%", objectFit: "cover", borderRadius: "5px", marginInline: "auto", display: "block" }} 
+                style={{ width: "100%", maxWidth: "1440px", height: "100%", objectFit: "cover", borderRadius: "5px", marginInline: "auto", display: "block" }} 
               />
-              <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(0,0,0,0.25)", maxWidth: "1200px", marginInline: "auto", borderRadius: "15px" }} />
+              <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(0,0,0,0.25)", maxWidth: "1440px", marginInline: "auto", borderRadius: "5px" }} />
               <div 
                 className="sus-reveal-element delay-1"
-                style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", zIndex: 2, padding: "0 20px", width: "100%" }}
+                style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", zIndex: 2, padding: "0 0px", width: "100%" }}
               >
                 <div style={{ fontWeight: "500", fontSize: "2.5rem", lineHeight: "1.3", letterSpacing: "0.5px", textShadow: "0px 3px 12px rgba(0,0,0,0.5)" }}>
                   "Sustainability begins at the source."

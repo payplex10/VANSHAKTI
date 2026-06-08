@@ -28,12 +28,12 @@ import DistributionIcon from "../assets/Icon (1).svg";
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 const categories = [
-  { title: "Fresh Fruits",       img: FreshFruits },
-  { title: "Fresh Vegetables",   img: FreshVegetables },
-  { title: "Herbal & Medicinal", img: HerbalMedicinal },
-  { title: "Mushrooms Farming",  img: MushroomsFarming },
-  { title: "Nursery Plants",     img: NurseryPlants },
-  { title: "Processed Products", img: ProcessedProducts },
+  { title: "Fresh Fruits",   category: "Category 01",    img: FreshFruits },
+  { title: "Fresh Vegetables", category: "Category 02",  img: FreshVegetables },
+  { title: "Herbal & Medicinal", category: "Category 03", img: HerbalMedicinal },
+  { title: "Mushrooms Farming", category: "Category 04",  img: MushroomsFarming },
+  { title: "Nursery Plants",   category: "Category 05",  img: NurseryPlants },
+  { title: "Processed Products", category: "Category 06", img: ProcessedProducts },
 ];
 
 const featuredItems = [
@@ -232,13 +232,29 @@ export default function Products() {
           position: absolute;
           bottom: 0;
           width: 100%;
-          padding: clamp(14px, 2.5vw, 24px);
+          padding: (20px 5px);
           color: #fff;
           font-weight: 500;
           font-size: clamp(1rem, 2.2vw, 1.9rem);
           z-index: 2;
           line-height: 1.25;
         }
+          .prod-cat-card__content {
+  position: absolute;
+  left: 14px;
+  bottom: 17px;
+  z-index: 2;
+}
+
+.prod-cat-card__category {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: 0;
+  color: #fff;
+  margin-bottom: 80px;
+}
 
         /* ────────────────────────────────────
            3. FEATURED SELECTIONS
@@ -246,7 +262,7 @@ export default function Products() {
         .prod-feat {
           max-width: 1200px;
           margin: 0 auto;
-          padding: 5px 20px ;
+          padding: clamp(20px, 4vw, 40px) clamp(20px, 4vw, 40px) clamp(48px, 6vw, 80px);
         }
         .prod-feat__header {
           display: flex;
@@ -395,7 +411,7 @@ export default function Products() {
         .prod-quality__feat-icon {
           background: #D0F44D;
           padding: 10px;
-          border-radius: 18px;
+          border-radius: 14px;
           flex-shrink: 0;
           display: flex;
           align-items: center;
@@ -745,8 +761,13 @@ export default function Products() {
                 className="prod-cat-card__img"
               />
               <div className="prod-cat-card__gradient" />
+              <div className="prod-cat-card__content">
+        <div className="prod-cat-card__category">
+          {item.category}
+        </div>
               <div className="prod-cat-card__label">{item.title}</div>
             </div>
+             </div>
           ))}
         </div>
       </section>

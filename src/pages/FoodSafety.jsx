@@ -2,10 +2,10 @@ import React, { useEffect, useState, useRef } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import HeroBg from "../assets/foodhero.png";
-import QualityIcon from "../assets/Icon3.png";
-import HygienicIcon from "../assets/Icon.png";
-import PackagingIcon from "../assets/Icon (1).png";
-import ProcessIcon from "../assets/Icon (2).png";
+import QualityIcon from "../assets/Icon3.svg";
+import HygienicIcon from "../assets/Icon.svg";
+import PackagingIcon from "../assets/Icon (1).svg";
+import ProcessIcon from "../assets/Icon (2).svg";
 import QualityBanner from "../assets/foodquality.jpg";
 
 import FSSAI from "../assets/logo1.png";
@@ -144,8 +144,8 @@ function FoodSafety() {
           width: fit-content;
         }
         .fs-hero__title {
-          font-size: 56px;
-          font-weight: 400;
+          font-size: clamp(2rem, 5vw, 3.5rem);
+          font-weight: 500;
           line-height: 1.13;
           margin: 0;
         }
@@ -404,8 +404,8 @@ function FoodSafety() {
           box-shadow: 0 16px 32px rgba(0,0,0,0.07);
         }
         .fs-cert-card__logo {
-          width: clamp(64px, 9vw, 88px);
-          height: clamp(64px, 9vw, 88px);
+          width: 219.31 px;
+          height: 108px;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -422,15 +422,16 @@ function FoodSafety() {
           color: #ccc;
         }
         .fs-cert-card__title {
-          font-size: clamp(0.9rem, 1.5vw, 1.05rem);
-          font-weight: 700;
-          color: #0D5C46;
+          font-size: 32px;
+          font-weight: 500;
+          color: #065532;
           margin: 0;
         }
         .fs-cert-card__sub {
-          font-size: clamp(0.72rem, 1.1vw, 0.8rem);
-          color: #6c757d;
-          line-height: 1.55;
+          font-weight: 400;
+          font-size: 16px ;
+          color: #000000;
+          line-height: 24px;
           text-align: center;
           margin: 0;
         }

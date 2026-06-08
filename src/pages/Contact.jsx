@@ -1,8 +1,9 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect , useState} from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { FiPhone, FiMail } from "react-icons/fi";
 
 import PartnershipBg from "../assets/partnership-bg.png";
 import FarmersImg from "../assets/farmer1.png";
@@ -24,6 +25,7 @@ import QualityFocusedIcon from "../assets/contactIcon (13).svg";
 
 const ContactPage = () => {
   const form = useRef(null);
+  const [activeStep, setActiveStep] = useState(null);
   
 
  useEffect(() => {
@@ -211,21 +213,36 @@ const ContactPage = () => {
       {collaborationSteps.map((step, idx) => (
         <div key={idx} className="d-flex flex-column align-items-center" style={{ width: "18%", zIndex: 1 }} data-aos="fade-up" data-aos-delay={idx * 100}>
           
-          <div style={{ 
-            width: "70px", 
-            height: "70px", 
-            borderRadius: "50%", 
-            // backgroundColor: idx === 4 ? "#1c5a3e" : "#ffffff", 
-             backgroundColor:  "#ffffff", 
-            border: "1px solid #d1d5db",
-            display: "flex", 
-            justifyContent: "center", 
-            alignItems: "center", 
-            marginBottom: "16px",
-            boxShadow: "0 4px 12px rgba(0,0,0,0.05)" 
-          }}>
-            <img src={step.icon} alt={step.title} style={{ width: "30px", height: "30px", filter: idx === 4 ? "invert(1)" : "none" }} />
-          </div>
+        <div
+  onMouseEnter={e => {
+    e.currentTarget.style.backgroundColor = "#1c5a3e";
+    e.currentTarget.style.border = "1px solid #1c5a3e";
+    e.currentTarget.style.boxShadow = "0 6px 20px rgba(28,90,62,0.3)";
+    e.currentTarget.querySelector("img").style.filter = "invert(1)";
+  }}
+  onMouseLeave={e => {
+    e.currentTarget.style.backgroundColor = "#ffffff";
+    e.currentTarget.style.border = "1px solid #d1d5db";
+    e.currentTarget.style.boxShadow = "0 4px 12px rgba(0,0,0,0.05)";
+    e.currentTarget.querySelector("img").style.filter = "none";
+  }}
+  style={{ 
+    width: "70px", 
+    height: "70px", 
+    borderRadius: "50%", 
+    backgroundColor: "#ffffff", 
+    border: "1px solid #d1d5db",
+    display: "flex", 
+    justifyContent: "center", 
+    alignItems: "center", 
+    marginBottom: "16px",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.05)",
+    cursor: "pointer",
+    transition: "all 0.3s ease",
+  }}
+>
+ <img src={step.icon} alt={step.title} style={{ width: "30px", height: "30px", transition: "filter 0.3s ease" }} />
+</div>
 
           <div className="text-center">
             <span style={{ fontSize: "0.85rem", fontWeight: 500, color: "#1c5a3e", display: "block", marginBottom: "4px" }}>{step.title}</span>
@@ -272,61 +289,286 @@ const ContactPage = () => {
           <div style={{ backgroundColor: "#ffffff", padding: "0px 40px", borderRadius: "24px", boxShadow: "0 15px 50px rgba(0,0,0,0.04)", border: "1px solid #f0f4f2" }} data-aos="fade-up">
             <div className="row align-items-center g-5">
               
-              {/* Left Column Text Content */}
-              <div className="col-lg-6" data-aos="fade-right">
-                <div style={{ paddingRight: "15px" }}>
-                  <h4 style={{ fontSize: "2.5rem", fontWeight: "500", marginBottom: "20px", color: "#082814", lineHeight: "1.2" }}>
-                    Let's talk about your farming needs
-                  </h4>
-                  <p style={{ fontSize: "1.1rem", lineHeight: "1.6", marginBottom: "32px", color: "#5d6b64" }}>
-                    Get expert guidance and support for smarter, more productive farming. Reach out directly or fill out the request pipeline sheet.
-                  </p>
-                  
-                  {/* Contact Info Items */}
-                  <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: "14px", padding: "12px 20px", borderRadius: "12px", width: "fit-content" }}>
-                      <span style={{ fontSize: "1.3rem" }}>📞</span>
-                      <span style={{ fontSize: "1.1rem", fontWeight: "600", color: "#082814" }}>+6287742493</span>
-                    </div>
-                    <div style={{ display: "flex", alignItems: "center", gap: "14px", padding: "12px 20px", borderRadius: "12px", width: "fit-content" }}>
-                      <span style={{ fontSize: "1.3rem" }}>✉</span>
-                      <span style={{ fontSize: "1.1rem", fontWeight: "600", color: "#082814" }}>info@vanshakti.com</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+    <div className="row g-5 align-items-stretch">
 
-              {/* Right Column Form Content */}
-              <div className="col-lg-6" data-aos="fade-left">
-                <form 
-                  ref={form} 
-                  onSubmit={sendEmail} 
-                  style={{ backgroundColor: "#ffffff", border: "1px solid #eef2f0", borderRadius: "16px", padding: "30px", boxShadow: "0 10px 30px rgba(0,0,0,0.02)" }}
-                >
-                  <div className="row g-3">
-                    <div className="col-sm-6">
-                      <input type="text" className="form-control" placeholder="First name" name="first_name" required style={{ padding: "12px", borderRadius: "8px" }} />
-                    </div>
-                    <div className="col-sm-6">
-                      <input type="text" className="form-control" placeholder="Last name" name="last_name" required style={{ padding: "12px", borderRadius: "8px" }} />
-                    </div>
-                    <div className="col-12">
-                      <input type="email" className="form-control" placeholder="Email Address" name="email" required style={{ padding: "12px", borderRadius: "8px" }} />
-                    </div>
-                    <div className="col-12">
-                      <input type="number" className="form-control" placeholder="Mobile Number" name="phone" required style={{ padding: "12px", borderRadius: "8px" }} />
-                    </div>
-                    <div className="col-12">
-                      <textarea className="form-control" placeholder="Write your message here..." rows="4" name="message" required style={{ padding: "12px", borderRadius: "8px" }}></textarea>
-                    </div>
-                    <div className="col-12 mt-4">
-                      <button type="submit" style={{ backgroundColor: "#dfff00", color: "#082814", border: "none", width: "100%", padding: "14px", borderRadius: "30px", fontWeight: "500", fontSize: "1rem", cursor: "pointer", boxShadow: "0 5px 15px rgba(223,255,0,0.3)", transition: "transform 0.2s" }} className="btn-submit">
-                        Send your message ➔
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
+      {/* LEFT SIDE */}
+      <div
+        className="col-lg-6"
+        data-aos="fade-right"
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          // justifyContent: "space-between",
+          minHeight: "650px",
+        }}
+      >
+        <div>
+          <p
+            style={{
+              fontSize: "20px",
+              color: "#04303B",
+              marginBottom: "24px",
+              fontWeight: "400",
+            }}
+          >
+            Contact us
+          </p>
+
+          <h1
+            style={{
+              fontSize: "62px",
+              fontWeight: "400",
+              lineHeight: "71.3px",
+              color: "#04303B",
+              marginBottom: "24px",
+            }}
+          >
+            Let’s talk about
+            <br />
+            your farming needs
+          </h1>
+
+          <p
+            style={{
+              fontSize: "16px",
+              lineHeight: "25.6px",
+              fontWeight: "400",
+              color: "#3B3939",
+              maxWidth: "512px",
+            }}
+          >
+            Get expert guidance and support for smarter, more productive
+            farming.
+          </p>
+        </div>
+
+        <div>
+          <div
+            style={{
+              width: "100%",
+              height: "1px",
+              background: "#D8D8C8",
+              marginBottom: "35px",
+            }}
+          />
+
+      <div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    gap: "28px",
+  }}
+>
+
+  {/* Phone */}
+  <div
+    style={{
+      display: "flex",
+      alignItems: "center",
+      gap: "12px",
+      fontSize: "18px",
+      color: "#444",
+    }}
+  >
+    <FiPhone
+      style={{
+        fontSize: "22px",
+        color: "#083847",
+        flexShrink: 0,
+      }}
+    />
+    <div>+6287742493</div>
+  </div>
+
+  {/* Email */}
+  <div
+    style={{
+      display: "flex",
+      alignItems: "center",
+      gap: "12px",
+      fontSize: "18px",
+      color: "#444",
+    }}
+  >
+    <FiMail
+      style={{
+        fontSize: "22px",
+        color: "#083847",
+        flexShrink: 0,
+      }}
+    />
+    <div>info@vanshakti.com</div>
+  
+          </div>
+           </div>
+        </div>
+      </div>
+
+      {/* RIGHT SIDE FORM */}
+      <div className="col-lg-6" data-aos="fade-left">
+        <form
+          ref={form}
+          onSubmit={sendEmail}
+          style={{
+            border: "1px solid #D8D8C8",
+            width:"620px",
+            borderRadius: "32px",
+            padding: "40px",
+            height: "100%",
+            background: "#fff",
+          }}
+        >
+          <h2
+            style={{
+              fontSize: "31px",
+              fontWeight: "400",
+              color: "#04303B",
+              marginBottom: "40px",
+            }}
+          >
+            Get in touch with us
+          </h2>
+
+          <div className="row g-4">
+
+            <div className="col-sm-6">
+              <label
+                style={{
+                  display: "block",
+                  marginBottom: "12px",
+                  fontSize: "18px",
+                  color: "#04303B",
+                }}
+              >
+                First name
+              </label>
+
+              <input
+                type="text"
+                name="first_name"
+                placeholder="Johan"
+                className="form-control"
+                required
+                style={{
+                  height: "64.59px",
+                  width:"268px",
+                  border: "none",
+                  borderRadius: "10px",
+                  background: "#BBBBBB26",
+                  padding: "0 18px",
+                }}
+              />
+            </div>
+
+            <div className="col-sm-6">
+              <label
+                style={{
+                  display: "block",
+                  marginBottom: "12px",
+                  fontSize: "18px",
+                  color: "#083847",
+                }}
+              >
+                Last name
+              </label>
+
+              <input
+                type="text"
+                name="last_name"
+                placeholder="Malik"
+                className="form-control"
+                required
+                style={{
+                  height: "62px",
+                  border: "none",
+                  borderRadius: "12px",
+                  background: "#F4F4F4",
+                  padding: "0 18px",
+                }}
+              />
+            </div>
+
+            <div className="col-12">
+              <label
+                style={{
+                  display: "block",
+                  marginBottom: "12px",
+                  fontSize: "18px",
+                  color: "#083847",
+                }}
+              >
+                Email
+              </label>
+
+              <input
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                className="form-control"
+                required
+                style={{
+                  height: "62px",
+                  border: "none",
+                  borderRadius: "12px",
+                  background: "#F4F4F4",
+                  padding: "0 18px",
+                }}
+              />
+            </div>
+
+            <div className="col-12">
+              <label
+                style={{
+                  display: "block",
+                  marginBottom: "12px",
+                  fontSize: "18px",
+                  color: "#083847",
+                }}
+              >
+                Message
+              </label>
+
+              <textarea
+                name="message"
+                rows="6"
+                placeholder="Enter your name"
+                className="form-control"
+                required
+                style={{
+                  border: "none",
+                  borderRadius: "12px",
+                  background: "#F4F4F4",
+                  padding: "18px",
+                  resize: "none",
+                  minHeight: "160px",
+                }}
+              />
+            </div>
+
+            <div className="col-12 mt-3">
+              <button
+                type="submit"
+                style={{
+                  background: "#D7F034",
+                  color: "#083847",
+                  border: "none",
+                  borderRadius: "50px",
+                  width: "240px",
+                  height: "60px",
+                  fontSize: "20px",
+                  fontWeight: "500",
+                  cursor: "pointer",
+                }}
+              >
+                Send your message →
+              </button>
+            </div>
+
+          </div>
+        </form>
+      </div>
+
+    </div>
 
             </div>
           </div>

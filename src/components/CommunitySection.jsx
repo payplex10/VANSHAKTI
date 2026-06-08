@@ -95,7 +95,7 @@ function CommunitySection() {
         .community-img-wrap:hover .community-img { transform: scale(1.03); }
 
         .community-text-col { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; }
-        .community-badge { display: inline-block; border: 1px solid #065532; border-radius: 16px; padding: 6px 18px; background-color: #F7F8F6; color: #000000; font-size: 16px; font-weight: 400; letter-spacing: 0; margin-bottom: 16px; }
+        .community-badge { display: inline-block; border: 1px solid #065532; border-radius: 16px; padding: 6px 18px; background-color: #F7F8F6; color: #000000; font-size: 16px; font-weight: 400; letter-spacing: 0; margin-bottom: 16px;,  fontStyle: "italic" }
         .community-title { font-size: 40px; font-weight: 400; color: #000000; line-height: 48px; margin: 0 0 16px 0; letter-spacing: 0; }
         .community-body { font-size: 24px; line-height: 32px; font-weight:400; color: #000000; margin: 0; max-width: 480px; }
 

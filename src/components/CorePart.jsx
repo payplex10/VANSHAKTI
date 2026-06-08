@@ -15,9 +15,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import bgImage        from "../assets/leaf.svg";
 import farmerPhoto    from "../assets/farmer.png";
 import iconFarm       from "../assets/centralized.png";
-import iconQuality    from "../assets/Group 3.png";
-import iconLogistics  from "../assets/logistics.png";
-import iconMarket     from "../assets/market.png";
+import iconQuality    from "../assets/logistics.png";
+import iconLogistics  from "../assets/market.png";
+import iconMarket     from "../assets/Group 3.png";
 
 const cards = [
   {
